@@ -14,8 +14,11 @@ use App\Models\Users;
 use App\Models\User_details;
 //导入城市表模型
 use App\Models\District;
+//
+use Illuminate\Support\Facades\Storage;
 class UsersController extends Controller
 {
+    //public $tpath;
     /**
      * Display a listing of the resource.
      *
@@ -199,16 +202,25 @@ class UsersController extends Controller
 
     public function uploadfile(Request $request)
     {
+        // $lpath  = 'head/users_19902.jpeg';
+        // if($this->tpath != null){
+        //     Storage::delete($this->tpath);
+        // }
         //判断是否有文件上传
         if ($request->hasFile('face')){
             //判断文件是否上传成功
            if ($request->file('face')->isValid()) {
-                $path = $request->file('face')->store('head');
+                //获取上传信息
+                $r = $request->file('face');
+                //获取文件名后缀
+                $suffix = $r->extension();
+                //拼接图片名
+                $pic_name = 'users_'.time().$request->input('uid').'.'.$suffix;
+                //移动文件
+                $path = $r->storeAs('head',$pic_name);
                 $data['face'] = '/uploads/'.$path;
+                //$this->tpath = $path;
                 //修改用户头像信息
-                // $infos = user_details::where('uid',$request->input('uid'))->first();
-                // $infos->face = '/uploads/'.$path;
-                // $infos->save();
                 $res = DB::table('user_details')->where('uid','=',$request->input('uid'))->update($data);
                 if($res){
                     return $path;
