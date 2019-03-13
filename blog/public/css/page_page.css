@@ -1,0 +1,6 @@
+.pagination{}
+.pagination li{width:30px;height:30px;float:left;list-style-type:none;border:1px solid #444444 ;text-align:center;line-height:30px;}
+.pagination li a{display:block;text-decoration:none;color:#fff}
+
+.pagination li span{width:100%;height:100%;display:block;background:#5555FF;display:block;border-radius:2px;cursor:pointer;opacity:0.9;}
+.pagination .disabled span{background:#AA7700;opacity:0.4;}
