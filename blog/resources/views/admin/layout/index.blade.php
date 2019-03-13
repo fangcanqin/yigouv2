@@ -119,10 +119,10 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="icon-user"></i> 管理员管理</a>
+                        <a href="#"><i class="icon-users"></i> 管理员管理</a>
                         <ul>
-                            <li><a href=""><i class="icon-chevron-right"></i> 管理员列表</a></li>
-                            <li><a href="/admin/admin_users/create"><i class="icon-chevron-right"></i> 管理员添加</a></li>
+                            <li><a href="/admin/admin_users"><i class="icon-user"></i> 管理员列表</a></li>
+                            <li><a href="/admin/admin_users/create"><i class="icon-add-contact"></i> 管理员添加</a></li>
                         </ul>
                     </li>
                     <li class="active">
