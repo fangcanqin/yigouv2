@@ -132,6 +132,14 @@
                             <li><a href="/admin/cates/create"><i class="icon-chevron-right"></i> 分类添加</a></li>
                         </ul>
                     </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-print"></i> 广告管理</a>
+                        <ul>
+                            <li><a href="/admin/ad"><i class="icon-chevron-right"></i> 广告列表</a></li>
+                            <li><a href="/admin/ad/create"><i class="icon-chevron-right"></i> 添加广告</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

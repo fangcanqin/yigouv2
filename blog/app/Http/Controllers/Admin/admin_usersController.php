@@ -34,7 +34,6 @@ class admin_usersController extends Controller
           
         //分页开始，每页5条数据
         $admin_users = admin_users::where('name','like','%'.$search.'%')->paginate($count);
-        
         //获取数据库里管理员相关信息
         return view('admin.admin_users.index',['admin_users'=>$admin_users,'request'=>$request->all()]);
     }
@@ -57,25 +56,28 @@ class admin_usersController extends Controller
      */
     public function store(admin_usersStoreBlogPost $request)
     {
-        //判断头像是否上传
-        if($request->hasFile('face')){
-            $res = $request->file('face');
-            //获取文件名后缀
-            $suffix = $res->extension();
-            //拼接完整名字
-            $name = time().'.'.$suffix;
-            $pic = $res->storeAs('admin',$name);
-            //实例化管理员模型表类
+        //实例化管理员模型表类
             $admins = new admin_users;
-
-            //添加头像
-            $admins->face = '/uploads/'.$pic;
             //添加名称
             $admins->name = $request->input('name','');
             //密码加密
             $admins->password = Hash::make($request->input('password'));
             //设置添加时间
             $admins->addtime = Carbon::now();
+
+        //判断头像是否上传
+        if($request->hasFile('face')){
+            $res = $request->file('face');
+            //获取文件名后缀
+            $suffix = $res->extension();
+
+            //拼接完整名字
+            $name = time().'.'.$suffix;
+            $pic = $res->storeAs('admin',$name);
+            
+            //添加头像
+            $admins->face = '/uploads/'.$pic;
+
             $res = $admins->save();   
             //判断是否添加成功
             if($res){   
@@ -86,8 +88,15 @@ class admin_usersController extends Controller
                 return redirect('/admin/admin_users/create')->with('error','添加失败');
             }
 
+            //图片后缀名
+            $arr = ['jpg','png','gif','jpeg'];
+            if(!in_array($suffix,$arr)){
+                return back()->with('error','请上传正确的图片格式文件');
+            }
+
         }else{
-            return back()->with('error','请添加头像');
+
+            return redirect('/admin/admin_users/create')->with('error','请添加头像');
         }   
     }
 
@@ -126,9 +135,15 @@ class admin_usersController extends Controller
         
         //判断是否上传头像
         if($request->hasFile('face')){
-             $res = $request->file('face');
+            $res = $request->file('face');
             // //获取文件名后缀
-             $suffix = $res->extension();
+            $suffix = $res->extension();
+
+            $arr = ['jpg','png','gif','jpeg'];
+            if(!in_array($suffix,$arr)){
+                 return back()->with('error','请上传正确的图片格式文件');
+            }
+
             // //拼接完整名字
              $name = time().'.'.$suffix;
 
