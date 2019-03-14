@@ -19,6 +19,7 @@
    <div class="mws-panel-body no-padding"> 
     <form class="mws-form" action="/admin/admin_users" method="post" enctype="multipart/form-data">
       {{ csrf_field() }} 
+      
      <div class="mws-form-inline"> 
       <div class="mws-form-row"> 
        <label class="mws-form-label" style="text-align:right;color:#000;"><span style="color:red;font-size:15px">*</span> 管理员</label> 
