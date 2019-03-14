@@ -133,32 +133,23 @@
                         </ul>
                     </li>
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
                     <li class="active">
                         <a href="#"><i class="icon-print"></i> 轮播图管理</a>
                         <ul>
                             <li><a href="/admin/slid"><i class="icon-chevron-right"></i> 轮播图列表</a></li>
-                            <li><a href="/admin/slid/create"><i class="icon-chevron-right"></i> 轮播图添加</a></li>
-=======
+                            <li><a href="/admin/slid/create"><i class="icon-chevron-right"></i> 轮播图添加</a>
+                        </ul>
+                    </li>
+
                     <li class="active">
                         <a href="#"><i class="icon-print"></i> 广告管理</a>
                         <ul>
                             <li><a href="/admin/ad"><i class="icon-chevron-right"></i> 广告列表</a></li>
                             <li><a href="/admin/ad/create"><i class="icon-chevron-right"></i> 添加广告</a></li>
->>>>>>> origin/mao
+
                         </ul>
                     </li>
-                </ul>
+                
             </div>
         </div>
         
