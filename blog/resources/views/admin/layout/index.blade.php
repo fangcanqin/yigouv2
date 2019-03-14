@@ -132,6 +132,24 @@
                             <li><a href="/admin/cates/create"><i class="icon-chevron-right"></i> 分类添加</a></li>
                         </ul>
                     </li>
+
+
+
+
+
+
+
+
+
+
+
+                    <li class="active">
+                        <a href="#"><i class="icon-print"></i> 轮播图管理</a>
+                        <ul>
+                            <li><a href="/admin/slid"><i class="icon-chevron-right"></i> 轮播图列表</a></li>
+                            <li><a href="/admin/slid/create"><i class="icon-chevron-right"></i> 轮播图添加</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -202,4 +220,6 @@
     <!-- Demo Scripts (remove if not needed) -->
 
 </body>
+@section('slid')
+@show
 </html>

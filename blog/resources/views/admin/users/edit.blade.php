@@ -9,8 +9,11 @@
     
     <span style="font-size:12px;color:#fff"><i class="icon-business-card" style="font-size:20px"></i> >>> 修改用户信息 </span> 
    </div> 
+   <form action="" enctype="multipart/form-data" method="post" id="mws-validate">
+       <div class="fileinput-holder" style="position: relative;z-index:9999;width:150px;height:20px;left:420px;top:-30px;display:none;"><span class="fileinput-btn btn" type="button" style="display:block; overflow: hidden; position: absolute; top: 0; right: 0; cursor: pointer;"> 更换头像 <input type="file" name="face" class="required" id = "photo" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;"></span></div>
+   </form>
    <div class="mws-panel-body no-padding"> 
-    <form action="/admin/users/{{$id}}" method="post" id="mws-validate" class="mws-form"  novalidate="novalidate" enctype="multipart/form-data">
+    <form action="/admin/users/{{$id}}" method="post"  class="mws-form"  novalidate="novalidate" enctype="multipart/form-data">
     {{csrf_field()}}
     {{method_field('PUT')}}
     <input type="hidden" name="url" value="{{$url}}">
@@ -33,8 +36,8 @@
        </div> 
       </div>
 
-      <div class="fileinput-holder" style="position: relative;z-index:9999;width:150px;height:20px;left:420px;top:-30px;display:none;"><span class="fileinput-btn btn" type="button" style="display:block; overflow: hidden; position: absolute; top: 0; right: 0; cursor: pointer;"> 更换头像 <input type="file" name="face" class="required" id = "photo" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;"></span></div>
-
+    <!--   <div class="fileinput-holder" style="position: relative;z-index:9999;width:150px;height:20px;left:420px;top:-30px;display:none;"><span class="fileinput-btn btn" type="button" style="display:block; overflow: hidden; position: absolute; top: 0; right: 0; cursor: pointer;"> 更换头像 <input type="file" name="face" class="required" id = "photo" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;"></span></div>
+ -->
       <div class="mws-form-row"> 
        <label class="mws-form-label" style="text-align:right;font-weight:bold"><i class="icon-envelope" style="font-size:25px"></i> &nbsp;&nbsp;&nbsp;邮箱:</label> 
        <div class="mws-form-item" style="width:200px;"> 
