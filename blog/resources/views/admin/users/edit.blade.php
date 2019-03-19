@@ -4,7 +4,7 @@
   <div class="mws-panel grid_8" style="width:700px;margin:50px 200px;"> 
    <div class="mws-panel-header">
     <div id="txa">
-      <img src="{{$data->face}}" alt=" " id="tx" style="width:100%">
+      <img src="{{$data->face or '/uploads/head/mr.jpg'}}" alt=" " id="tx" style="width:100%">
     </div>
     
     <span style="font-size:12px;color:#fff"><i class="icon-business-card" style="font-size:20px"></i> >>> 修改用户信息 </span> 

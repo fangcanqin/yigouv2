@@ -31,9 +31,9 @@ class UsersController extends Controller
         //分页条数
         $num = $request->input('num',5);
         //获取所有用户信息
-        $list = Users::where('username','like',"%{$search}%")->paginate($num);
+        $list = Users::where('email','like',"%{$search}%")->paginate($num);
         //获取数据条数
-        $total = Users::where('username','like',"%{$search}%")->count();
+        $total = Users::where('email','like',"%{$search}%")->count();
         //加载列表页面,并分配数据
         return view('admin.users.index',['list'=>$list,'total'=>$total,'limit'=>$request->all()]);
     }

@@ -45,7 +45,7 @@
             <div class="login-links">
                 <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
 								<a href="#" class="am-fr">忘记密码</a>
-								<a href="register.html" class="zcnext am-fr am-btn-default">注册</a>
+								<a href="/home/register/index" class="zcnext am-fr am-btn-default">注册</a>
 								<br />
             </div>
 								<div class="am-cf">
@@ -68,13 +68,13 @@
 					<div class="footer ">
 						<div class="footer-hd ">
 							<p>
-								<a href="# ">易购商城</a>
+								<a href="/home">易购商城</a>
 								<b>|</b>
 								<!-- <a href="# ">商城首页</a> -->
 								<!-- <b>|</b> -->
-								<a href="# ">支付宝</a>
+								<a href="https://www.alipay.com/">支付宝</a>
 								<b>|</b>
-								<a href="# ">物流</a>
+								<a href="http://www.kuaidi100.com/">物流</a>
 							</p>
 						</div>
 						<div class="footer-bd ">

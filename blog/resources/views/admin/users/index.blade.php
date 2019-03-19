@@ -25,7 +25,9 @@
    <thead> 
     <tr> 
      <th>ID</th>
-     <th>用户名</th> 
+     <th>用户名</th>
+     <th>手机号</th>
+     <th>邮箱</th>
      <th>状态</th> 
      <th>密令</th> 
      <th>注册时间</th> 
@@ -37,12 +39,16 @@
     <tr> 
      <td> {{ $v->id }} </td> 
      <td> {{ $v->username }} </td> 
+     <td> {{ $v->phone }} </td> 
+     <td> {{ $v->email }} </td> 
      <td> @if($v->status == 0) 未激活 @else 正常 @endif </td> 
      <td title="刮开即可查看密令" style="color: transparent;text-shadow: 0 0 10px rgba(0,0,0,0.8);"> <b>{{ $v->token }}</b></td> 
      <td> {{ date('Y-m-d h:i:s',$v->addtime)}}</td> 
      <td>
+ 
        <a href="/admin/users/{{$v->id}}" style="color:#000"><i class="icon-official" style="font-size:20px"></i></a>
        <a href="/admin/users/{{$v->id}}/edit" style="color:#000"><i class="icon-edit" style="font-size:25px"></i></a>
+
        <!-- <a href="" style="color:#000"><i class="icon-remove" style="font-size:23px;color:red"></i></a> -->
      </td> 
     </tr>

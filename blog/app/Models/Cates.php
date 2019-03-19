@@ -10,4 +10,10 @@ class Cates extends Model
     protected $table = 'cates';
     //禁止自动维护时间戳
     public $timestamps = false;
+
+    //分类对应属性
+    public function catesAttribute()
+    {
+        return $this->hasMany('App\Models\Attribute','tid');
+    }
 }

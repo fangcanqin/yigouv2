@@ -25,3 +25,38 @@ function getTypeImg($suffix){
     $arr = ['img','png','jpeg','gif'];
     return in_array($suffix,$arr);
 }
+/**
+ * [CartesianProduct description]
+ * @param [type] $sets [description]
+ */
+function CartesianProduct($sets){
+ 
+ // 保存结果
+ $result = array();
+ 
+ // 循环遍历集合数据
+ for($i=0,$count=count($sets); $i<$count-1; $i++){
+ 
+ // 初始化
+ if($i==0){
+  $result = $sets[$i];
+ }
+ 
+ // 保存临时数据
+ $tmp = array();
+ 
+ // 结果与下一个集合计算笛卡尔积
+ foreach($result as $res){
+  foreach($sets[$i+1] as $set){
+  $tmp[] = $res.$set;
+  }
+ }
+ 
+ // 将笛卡尔积写入结果
+ $result = $tmp;
+ 
+ }
+ 
+ return $result;
+ 
+}
