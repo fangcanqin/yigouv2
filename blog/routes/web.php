@@ -25,7 +25,7 @@ Route::resource('/admin/users','Admin\UsersController');
 
 
 //配置管理员
-Route::resource('/admin/admin_users','Admin\admin_usersController');
+Route::resource('/admin/admin_users','Admin\Admin_usersController');
 
 //分类模块路由配置开始
 
@@ -41,5 +41,24 @@ Route::resource('/admin/slid','Admin\SlidController');
 //轮播图路配置结束
 
 //广告管理  
-Route::resource('/admin/ad','Admin\adController');
+Route::resource('/admin/ad','Admin\AdController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+//友情链接
+Route::resource('/admin/flink','Admin\FlinkController');
+
+//订单管理
+Route::resource('/admin/orders','Admin\OrdersController');
+Route::resource('/admin/orders/status','Admin\OrdersController@status');
 

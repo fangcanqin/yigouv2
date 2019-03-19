@@ -149,6 +149,19 @@
 
                         </ul>
                     </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-users"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/orders"><i class="icon-user"></i> 订单列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="icon-print"></i> 链接管理</a>
+                        <ul>
+                            <li><a href="/admin/flink"><i class="icon-chevron-right"></i> 链接列表</a></li>
+                        </ul>
+                    </li>
                 
             </div>
         </div>
