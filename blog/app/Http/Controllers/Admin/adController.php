@@ -20,7 +20,12 @@ class adController extends Controller
      */
     public function index(Request $request)
     {
-        $ad = ad::paginate();
+        //默认显示每页显示5条数据
+        $count = $request->input('count',5);
+        $search = $request->input('search','');
+          
+        //分页开始，每页5条数据
+        $ad = ad::where('url','like','%'.$search.'%')->paginate($count);
         
         return view('admin.ad.index',['ad'=>$ad]);
     }

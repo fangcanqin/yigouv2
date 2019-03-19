@@ -3,11 +3,11 @@
 
 <div class="mws-panel grid_8"> 
    <div class="mws-panel-header"> 
-    <span><i class="icon-table"></i> 广告列表</span> 
+    <span><i class="icon-table"></i> 管理员列表</span> 
    </div> 
    <div class="mws-panel-body no-padding"> 
     <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
-    <form action="/admin/ad" method="get">
+    <form action="" method="get">
        <div id="DataTables_Table_1_length" class="dataTables_length">
         <label>显示 
         <select size="1" name="count">
@@ -18,7 +18,7 @@
           </select> 条数</label>
        </div>
        <div class="dataTables_filter" id="DataTables_Table_1_filter">
-          <label style="font-weight:bold">关键字: <input type="text" name="search" value="{{ $request['search'] or '' }}" aria-controls="DataTables_Table_1" /></label> 
+          <label style="font-weight:bold">关键字: <input type="text" name="search" value="" aria-controls="DataTables_Table_1" /></label> 
           <input type="submit" value="查找" class="btn btn-info">
        </div>
      </form>
@@ -29,29 +29,33 @@
          <thead> 
           <tr> 
            <th>ID</th>
-           <th>广告图片</th> 
-           <th>广告地址</th> 
-           <th>广告状态</th> 
-           <th>广告开始时间</th> 
-           <th>光改结束时间</th> 
+           <th>图片</th> 
+           <th>链接地址</th> 
+           <th>链接状态</th> 
+           <th>申请时间</th> 
+           <th>停止时间</th> 
+           <th>申请人</th> 
+           <th>内容</th> 
            <th>操作</th> 
           </tr> 
          </thead> 
          <tbody> 
-          @foreach($ad as $key=>$val)
+          @foreach($flink as $key=>$val)
           <tr>
            <td>{{ $val->id }}</td> 
            <td style="width:200px;"><img src="{{ $val->img }}" style="width:50px;"></td> 
            <td>{{ $val->url }}</td> 
-           <td>@if($val->status == 0) 未激活 @else 正常 @endif</td> 
+           <td>@if($val->status == 0) 未激活 @else 激活 @endif</td> 
            <td>{{ $val->ctime }}</td> 
            <td>{{ $val->stime }}</td> 
+           <td>{{ $val->uid }}</td> 
+           <td>{{ $val->content }}</td> 
            <td>
-              <form action="/admin/ad/{{ $val->id }}" method="post">
+              <form action="/admin/flink/{{ $val->id }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <input type="submit" value="删除" class="btn btn-danger" >
-                <a href="/admin/ad/{{ $val->id }}/edit" class="btn btn-info">修改</a>
+                <a href="/admin/flink/{{ $val->id }}/edit" class="btn btn-info">修改</a>
               </form>             
            </td>
           </tr>
@@ -61,10 +65,10 @@
        </body>
       </html>
      <div class="dataTables_info" id="DataTables_Table_1_info">
-      获取数据为 {{ $ad->total() }} 条
+      获取数据为 {{ $flink->total() }} 条
      </div>
      <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-      {{ $ad->appends([])->links() }}
+      {{ $flink->appends([])->links() }}
      </div>
     </div> 
    </div> 
