@@ -144,7 +144,7 @@ class admin_usersController extends Controller
                  return back()->with('error','请上传正确的图片格式文件');
             }
 
-            // //拼接完整名字
+            //拼接完整名字
              $name = time().'.'.$suffix;
 
              $pic = $res->storeAs('admin',$name);
@@ -175,7 +175,6 @@ class admin_usersController extends Controller
             
             //修改密码
             $admin_users->password = Hash::make($request->input('password',''));
-
 
             $res = $admin_users->save();
 

@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+//导入广告模型表
 use App\Models\ad;
-
+//导入广告验证类
 use App\Http\Requests\AdStoreBlogPost;
-
+//导入DB类
 use DB;
 
 class adController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 显示广告列表页
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class adController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 显示广告添加页面
      *
      * @return \Illuminate\Http\Response
      */
@@ -41,7 +41,7 @@ class adController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 广告添加操作处理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -58,7 +58,7 @@ class adController extends Controller
         $ads->ctime = $request->input('ctime');
         //获取广告结束时间
         $ads->stime = $request->input('stime');
-        
+        //判断是否添加图片
         if($request->hasFile('img')){
         //获取广告图片名称
         $res = $request->file('img');
@@ -70,6 +70,7 @@ class adController extends Controller
         //获取新的广告图片
         $ads->img = '/uploads/'.$pic;
         $res = $ads->save();
+        //判断是否添加成功
         if($res){   
                 DB::commit();
                 return redirect('/admin/ad')->with('success','添加成功');
@@ -97,7 +98,7 @@ class adController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 修改广告资料
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -109,7 +110,7 @@ class adController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 获广告提交过来的修改资料
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -131,24 +132,25 @@ class adController extends Controller
 
         //判断是否上传头像
         if($request->hasFile('img')){
-        //获取图片
-        $res = $request->file('img');
-        //获取文件后缀名
-        $suffix = $res->extension();
-
-        $arr = ['jpg','png','gif','jpeg'];
-
-        if(!in_array($suffix,$arr)){
-            return back()->with('error','请上传正确的图片格式文件');
-        }
-        //拼接一个完整的名字
-        $name = time().'.'.$suffix;
-        //将图片放到对应的文件里
-        $pic = $res->storeAs('ad',$name);
-        //修改广告图片
-        $ad->img = '/uploads/'.$pic;
-            
-        $res = $ad->save();
+            //获取图片
+            $res = $request->file('img');
+            //获取文件后缀名
+            $suffix = $res->extension();
+            //制定一个图片后缀规格
+            $arr = ['jpg','png','gif','jpeg'];
+            //判断是否符合图片上传规格
+            if(!in_array($suffix,$arr)){
+                return back()->with('error','请上传正确的图片格式文件');
+            }
+            //拼接一个完整的名字
+            $name = time().'.'.$suffix;
+            //将图片放到对应的文件里
+            $pic = $res->storeAs('ad',$name);
+            //修改广告图片
+            $ad->img = '/uploads/'.$pic;
+                
+            $res = $ad->save();
+            //判断是否修改成功
             if($res){   
                 DB::commit();
                 return redirect('/admin/ad')->with('success','修改成功');
@@ -169,7 +171,7 @@ class adController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除广告操作
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

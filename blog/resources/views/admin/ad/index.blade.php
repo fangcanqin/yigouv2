@@ -50,7 +50,7 @@
               <form action="/admin/ad/{{ $val->id }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <input type="submit" value="删除" class="btn btn-danger" >
+                <input type="submit" value="" class="icol32-cancel" >
                 <a href="/admin/ad/{{ $val->id }}/edit" class="btn btn-info">修改</a>
               </form>             
            </td>
@@ -61,7 +61,7 @@
        </body>
       </html>
      <div class="dataTables_info" id="DataTables_Table_1_info">
-      获取数据为 {{ $ad->total() }} 条
+      【共 {{ $ad->total() }} 条数据】
      </div>
      <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
       {{ $ad->appends([])->links() }}

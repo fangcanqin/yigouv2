@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+//导入友情链接模型表
 use App\Models\flink;
+//导入DB类
 use DB;
+//导入友情链接添加验证类
 use App\Http\Requests\FlinkStoreBlogPost;
 class FlinkController extends Controller
 {
@@ -59,7 +62,7 @@ class FlinkController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 修改友情链接资料
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -72,7 +75,7 @@ class FlinkController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 处理修改友情链接资料
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -101,7 +104,7 @@ class FlinkController extends Controller
         $res = $request->file('img');
         //获取文件后缀名
         $suffix = $res->extension();
-
+        //指定图片后缀名
         $arr = ['jpg','png','gif','jpeg'];
         //判断是否符合上传规格
         if(!in_array($suffix,$arr)){
@@ -112,9 +115,11 @@ class FlinkController extends Controller
         $name = time().'.'.$suffix;
         //将图片防治对应的文件内
         $pic = $res->storeAs('flink',$name);
+        //拼接图片路径
         $flink->img = '/uploads/'.$pic;
         
         $res = $flink->save();
+        //判断是否添加成功
             if($res){
                 DB::commit();
                 return redirect('/admin/flink')->with('success','修改成功');
@@ -134,7 +139,7 @@ class FlinkController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除友情链接操作
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

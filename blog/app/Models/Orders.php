@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Orders extends Model
 {
-    //与模型关联订单详情表
+    
     protected $table = 'orders';
-
-    //禁止模型自动获取时间
+    // 表明模型是否应该被打上时间戳
     public $timestamps = false;
+    
+    /**
+     * 获得与用户关联的电话记录。
+     */
+    public function address()
+    {
+        return $this->hasOne('App\Models\Address','user_id');
+    }
 }

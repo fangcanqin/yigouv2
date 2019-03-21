@@ -43,7 +43,7 @@
           @foreach($flink as $key=>$val)
           <tr>
            <td>{{ $val->id }}</td> 
-           <td style="width:200px;"><img src="{{ $val->img }}" style="width:50px;"></td> 
+           <td style="width:200px;"><img src="{{ $val->img }}" style="width:60px;height:70px;"></td> 
            <td>{{ $val->url }}</td> 
            <td>@if($val->status == 0) 未激活 @else 激活 @endif</td> 
            <td>{{ $val->ctime }}</td> 
@@ -65,7 +65,7 @@
        </body>
       </html>
      <div class="dataTables_info" id="DataTables_Table_1_info">
-      获取数据为 {{ $flink->total() }} 条
+      【共 {{ $flink->total() }} 条数据】
      </div>
      <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
       {{ $flink->appends([])->links() }}

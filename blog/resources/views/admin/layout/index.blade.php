@@ -126,7 +126,7 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="icon-print"></i> 分类管理</a>
+                        <a href="#"><i class="icon-list"></i> 分类管理</a>
                         <ul>
                             <li><a href="/admin/cates"><i class="icon-chevron-right"></i> 分类列表</a></li>
                             <li><a href="/admin/cates/create"><i class="icon-chevron-right"></i> 分类添加</a></li>
@@ -134,7 +134,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="#"><i class="icon-print"></i> 轮播图管理</a>
+                        <a href="#"><i class="icon-picture"></i> 轮播图管理</a>
                         <ul>
                             <li><a href="/admin/slid"><i class="icon-chevron-right"></i> 轮播图列表</a></li>
                             <li><a href="/admin/slid/create"><i class="icon-chevron-right"></i> 轮播图添加</a>
@@ -142,34 +142,34 @@
                     </li>
 
                     <li class="active">
-                        <a href="#"><i class="icon-print"></i> 广告管理</a>
+                        <a href="#"><i class="icon-list-2"></i> 广告管理</a>
                         <ul>
                             <li><a href="/admin/ad"><i class="icon-chevron-right"></i> 广告列表</a></li>
                             <li><a href="/admin/ad/create"><i class="icon-chevron-right"></i> 添加广告</a></li>
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="icon-print"></i> 商品管理</a>
+                        <a href="#"><i class="icon-gift"></i> 商品管理</a>
                         <ul>
                             <li><a href="/admin/goods"><i class="icon-chevron-right"></i> 商品列表</a></li>
                             <li><a href="/admin/goods/create"><i class="icon-chevron-right"></i> 添加商品</a></li>
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="icon-print"></i> 公告管理</a>
+                        <a href="#"><i class="icon-calendar"></i> 公告管理</a>
                         <ul>
                             <li><a href="/admin/notice"><i class="icon-chevron-right"></i> 公告列表</a></li>
                             <li><a href="/admin/notice/create"><i class="icon-chevron-right"></i> 添加公告</a></li>
                         </ul>
                     </li>
                   <li class="active">
-                        <a href="#"><i class="icon-print"></i> 订单管理</a>
+                        <a href="#"><i class="icon-shopping-cart"></i> 订单管理</a>
                         <ul>
                             <li><a href="/admin/orders"><i class="icon-chevron-right"></i> 订单列表</a></li>
                         </ul>
                     </li>
                       <li class="active">
-                        <a href="#"><i class="icon-print"></i> 链接管理</a>
+                        <a href="#"><i class="icon-link"></i> 链接管理</a>
                         <ul>
                             <li><a href="/admin/flink"><i class="icon-chevron-right"></i>链接列表</a></li>
                           
