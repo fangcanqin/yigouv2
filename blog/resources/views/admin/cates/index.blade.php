@@ -17,8 +17,9 @@
         </thead>
         <tbody>
             @foreach($data as $k => $v)
-            <tr>
-                <td>{{ $v->id }}</td>
+            <tr >
+                <td> 
+                    {{ $v->id }}</td>
                 <td style="text-align:left;width:200px;@if ($v->pid ==0) font-size:14px;font-weight:bold; @endif">
                     <span style="margin-left:60px;">{{ $v->name }} 
                     </span>
@@ -26,12 +27,14 @@
                 <td>{{ $v->path }}</td>
                 <td>{{ $v->status == 1? '上架' : '下架'}}</td>
                 <td style="width:200px">
-                    <a href="/admin/cates/create?pid={{$v->id}}" class="btn btn-info">添加子分类</a>
+                    <a href="/admin/cates/create?pid={{$v->id}}" class="btn btn-info">添加子分类 </a>
                 </td>
+
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 </div>
+
 @endsection

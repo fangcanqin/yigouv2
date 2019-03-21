@@ -47,7 +47,16 @@
                 </td>
                 <td id="gid">{{$v->id}}</td>
                 <td class="std">{{$v->surl}}</td>
-                <td>{{$v->status}}</td>
+                <td>
+                <a href="javascript:;" style="font-weight:bold" class="slid_status" title="{{$v->status}}" >
+                    @if($v->status == 0)
+                    <font color="red">停止发布</font>
+                    @else
+                    <font color="blue">正常使用</font>
+                    @endif
+                </a>
+                   
+                </td>
                 <td>{{$v->simg}}</td>
                 <td class="std2">{{$v->token or $k}}</td>
             </tr>
@@ -155,5 +164,23 @@
                     console.log(res);
         });
     });
+
+    //无刷新改变轮播图状态
+    $('.slid_status').click(function(){
+        obj =  $(this);
+        status = $(this).attr('title');     
+        //获取到操作的id号
+        id = $(this).parent().parent().children('#gid').html();
+   
+        $.get('/admin/slid/changeStatus',{status:status,id:id},function(res){
+            if(res == 0){
+               obj.html('<font color="red">停止发布</font>'); 
+           }else{
+                obj.html('<font color="blue">正常使用</font>');
+           }
+           
+        })
+    })
 </script>
+
 @endsection

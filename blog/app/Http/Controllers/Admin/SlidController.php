@@ -177,12 +177,20 @@ class SlidController extends Controller
         return Slid::destroy($request->input('arr',''));
     }
 
-    // public static function test($url){
-    //      if(self::httpcode($url) == 200){
-    //         return true;
-    //      }else{
-    //         return false;
-    //      }
-
-    // }
+    //改变轮播图状态
+    public function changeStatus(Request $request)
+    {
+        $slid = Slid::find($request->input('id'));
+        if($request->input('status') == 0){
+            $slid->status = 1;
+        }else{
+            $slid->status = 0;
+        }
+        if($slid->save()){
+            return 1;
+        }else{
+            return 0;
+        }
+       return $request->input('status');
+    }
 }

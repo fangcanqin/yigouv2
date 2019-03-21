@@ -35,10 +35,11 @@ Route::middleware(['checklogin'])->group(function(){
     //轮播图路配置开始
     Route::post('/admin/slid/change','Admin\SlidController@change');
     Route::get('/admin/slid/test','Admin\SlidController@test');
+    Route::get('/admin/slid/changeStatus','Admin\SlidController@changeStatus');
     Route::post('/admin/slid/batchDelete','Admin\SlidController@batchDelete');
     Route::resource('/admin/slid','Admin\SlidController');
     //轮播图路配置结束
-    //
+
     //广告管理  
     Route::resource('/admin/ad','Admin\adController');
     //商品模块路由配置开始
@@ -47,10 +48,17 @@ Route::middleware(['checklogin'])->group(function(){
     Route::post('/admin/goods/setattr','Admin\GoodsController@setAttr');
     Route::get('/admin/goods/setversiontype','Admin\GoodsController@setVersionType');
     Route::get('/admin/goods/showSku','Admin\GoodsController@showSku');
+    Route::get('/admin/goods/goodsdel/{id}','Admin\GoodsController@goodsDel');
+    Route::get('/admin/goods/goodsedit/{id}','Admin\GoodsController@goodsEdit');
+    Route::get('/admin/goods/groupdel/{id}','Admin\GoodsController@groupDel');
+    Route::post('/admin/goods/goodsupdate','Admin\GoodsController@goodsUpdate');
     Route::post('/admin/goods/setgroup','Admin\GoodsController@setGroup');
     Route::post('/admin/goods/setdata','Admin\GoodsController@setData');
+    Route::post('/admin/goods/changepic','Admin\GoodsController@changePic');
+    Route::post('/admin/goods/groupdata','Admin\GoodsController@groupData');
     Route::resource('/admin/goods','Admin\GoodsController');
     //商品模块路由配置结束   
+
     //公告模块路由配置开始
     Route::resource('/admin/notice','Admin\NoticeController');
     //公告模块路由配置结束
@@ -79,3 +87,7 @@ Route::get('/home/login/index','Home\LoginController@index');
 //前台无限递归分类路由开始
 Route::get('/home','Home\IndexController@index');
 //前台无限递归分类路由结束
+//商品详情页
+Route::get('/home/introduction/index/{id}','Home\IntroductionController@index');
+//获取商品单价
+Route::get('/home/introduction/getprice','Home\IntroductionController@getPrice');

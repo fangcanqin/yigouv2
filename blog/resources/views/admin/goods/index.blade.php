@@ -15,24 +15,46 @@
       <option value="15" @if(isset($limit['num']) && $limit['num'] == 20) selected @endif>20</option></select> 条数</label>
      </div>
      <div class="dataTables_filter" id="DataTables_Table_1_filter">
-      <label style="font-weight:bold">关键字: <input type="text" aria-controls="DataTables_Table_1" name="search" placeholder="商品编码" value="@isset($limit['search']) {{$limit['search']}} @endisset"></label> <input type="submit" value="查找" class="btn btn-info">
+      <label style="font-weight:bold">关键字: <input type="text" aria-controls="DataTables_Table_1" name="search" placeholder="商品名" value="@isset($limit['search']) {{$limit['search']}} @endisset"></label> <input type="submit" value="查找" class="btn btn-info">
      </div>
   <table class="mws-table"> 
    <thead> 
     <tr> 
-     <th>ID</th>
+     <!-- <th>ID</th>
      <th>商品ID</th> 
      <th>商品编码</th> 
      <th>商品组合名</th> 
      <th>商品图</th> 
      <th>商品库存</th> 
      <th>商品单价</th> 
+     <th>操作</th>  -->
+     <th>商品ID</th> 
+     <th>商品名</th>  
+     <th>描述</th> 
+     <th>状态</th> 
      <th>操作</th> 
     </tr> 
    </thead> 
    <tbody>
     @foreach($list as $k => $v)
-     <tr> 
+      <td>{{$v->id}}</td> 
+      <td>{{$v->name}}</td> 
+      <td>{{$v->descr}}</td> 
+      <td>
+      @if($v->status == 0)
+      <font color="red">下架</font>
+      @else
+      <font color="green">上架</font>
+      @endif
+      </td> 
+      <td >
+       <a href="/admin/goods/{{$v->id}}" style="color:blue;font-weight:bold">商品组合详情</a>
+       <a href="/admin/goods/goodsedit/{{$v->id}}" style="color:green;font-weight:bold">修改</a>
+       <a href="/admin/goods/goodsdel/{{$v->id}}" style="color:red;font-weight:bold">删除</a>
+     </td> 
+    </tr>
+
+     <!-- <tr> 
      <td>{{$v->id}}</td> 
      <td>{{$v->gid}}</td> 
      <td>{{$v->code}}</td> 
@@ -42,14 +64,14 @@
      <td>{{$v->price}}</td> 
      <td>
        <a href="/admin/users/1" style="color:#000"><i class="icon-official" style="font-size:20px"></i></a>
-       <a href="/admin/users/1/edit" style="color:#000"><i class="icon-edit" style="font-size:25px"></i></a>
-       <!-- <a href="" style="color:#000"><i class="icon-remove" style="font-size:23px;color:red"></i></a> -->
+       <a href="/admin/goods/{{$v->id}}/edit" style="color:#000"><i class="icon-edit" style="font-size:25px"></i></a>
+       <a href="" style="color:#000"><i class="icon-remove" style="font-size:23px;color:red"></i></a>
      </td> 
-    </tr>
+    </tr> -->
     @endforeach
        </tbody> 
   </table>
-     <div class="dataTables_info" id="DataTables_Table_1_info">【共 4 条数据】</div>
+     <div class="dataTables_info" id="DataTables_Table_1_info">【共 {{$total}} 条数据】</div>
      <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate" style="margin:3px">
         {{ $list->appends($limit)->links() }}
      </div>

@@ -10,4 +10,11 @@ class Goods extends Model
     protected $table = 'goods';
     //禁止自动维护时间字段
     public $timestamps = false;
+
+    //商品对应商品组合
+    public function goods_group()
+    {
+        return $this->hasMany('App\Models\Sku_details','gid');
+    }
+
 }

@@ -4,8 +4,12 @@
 <div class="demo" style="margin-top:40px;"> 
         <input type="hidden" value="{{$gid}}" id="gid">
   <!--   <div class="plus-tag tagbtn clearfix" id="myTags"></div> -->
-    <span class="label" style=" font-size: 16px;">规格：</span><input type="text" id="new_text" value="" style="margin-left:50px"> <button type="button" class="btn btn-info" style="font-size:14px;" id="new_btn">创建</button> <input type="hidden" value="{{$tid}}" id="tid">
-
+    <span class="label" style=" font-size: 16px;">规格：</span><input type="text" id="new_text" value="" style="margin-left:50px"> <button type="button" class="btn btn-info" style="font-size:14px;" id="new_btn">创建</button> 
+    <input type="hidden" value="{{$tid}}" id="tid">
+    <div id="new_boxx" style="width:400px;height:100px;border:1px solid #ccc;margin-top:10px;padding:2px;">
+        
+        
+    </div>
     <div class="plus-tag-add">
      
             <ul class="Form FancyForm" style="margin-top: 10px;">

@@ -269,58 +269,85 @@
         $('#new_text').focus();
         $('#new_btn').click(function(){
             //alert($('#new_text').val());
-            if(trim($('#new_text').val()).length == 0){
-                alert('内容不能为空');
-                return ;
-            }
-            // 获取文本框的内容
+            // if(trim($('#new_text').val()).length == 0){
+            //     alert('内容不能为空');
+            //     return ;
+            // }
+            // // 获取文本框的内容
+            // content = $('#new_text').val();
+            // $('#new_box').append('<label style="font-weight:bold"><input type="checkbox" value="'+$('#new_text').val()+'">'+$('#new_text').val()+' </label>');
+            // $('#new_text').val('');
+            
+            //获取文本框里面的内容
             content = $('#new_text').val();
-            $('#new_box').append('<label style="font-weight:bold"><input type="checkbox" value="'+$('#new_text').val()+'">'+$('#new_text').val()+' </label>');
-            $('#new_text').val('');
-        });
-
-          $('#queding').click(function(){
-                //获取到所有打勾的值
-                //console.log($('input:checked'));
-               arr1 = []; 
-             $('input:checked').each(function(){
-                 arr1.push($(this).val());
-             })
-             //console.log(arr1);
+            //商品分类id
+            tid = $('#tid').val();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            tid= $('#tid').val();
-            $.post('/admin/goods/setversion',{data:arr1,tid:tid},function(res){
-                if(res == 1){
-                    gid =$('#gid').val();
-                    window.location.href="/admin/goods/setversiontype?tid="+tid+'&gid='+gid;
-                }else{
-                    alert('操作失败,系统故障,请联系技术人员');
-                }
+            //发送请求
+            $.post('/admin/goods/setversion',{data:content,tid:tid},function(res){
+               
+               $('#new_boxx').append('<label style="font-weight:bold"><input type="checkbox" value="'+content+'">'+content+' </label>');
+               $('#new_text').val('');
             })
+        });
 
-          });
+        $('#queding').click(function(){
+            //获取到所有打勾的值
+              arr1 = []; 
+             $('input:checked').each(function(){
+                 arr1.push($(this).val());
+             });
+             tid= $('#tid').val();
+             gid = $('#gid').val();
+             window.location.href="/admin/goods/setversiontype?tid="+tid+'&gid='+gid+'&arr1='+arr1;
+        });
+          // $('#queding').click(function(){
+          //       //获取到所有打勾的值
+          //       //console.log($('input:checked'));
+          //      arr1 = []; 
+          //    $('input:checked').each(function(){
+          //        arr1.push($(this).val());
+          //    })
+          //    //console.log(arr1);
+          //   $.ajaxSetup({
+          //       headers: {
+          //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          //       }
+          //   });
+          //   tid= $('#tid').val();
+          //   $.post('/admin/goods/setversion',{data:arr1,tid:tid},function(res){
+          //       if(res == 1){
+          //           gid =$('#gid').val();
+          //           window.location.href="/admin/goods/setversiontype?tid="+tid+'&gid='+gid;
+          //       }else{
+          //           alert('操作失败,系统故障,请联系技术人员');
+          //       }
+          //   })
+
+          // });
 
 
           $('button[type=button]').click(function(){
                 new_type = $(this).prev().val();
-                id = $(this).prev().prev().attr('title')
-                $('#test_box').append('<label><input type="checkbox" value="'+id+','+new_type+'" />'+new_type+'<label>');
-                $(this).prev().val('');
+                 id = $(this).parent().prev().attr('title');
+                 
+                 $('#test_box').append('<label><input type="checkbox" value="'+id+','+new_type+'" />'+new_type+'<label>');
+                 $(this).prev().val('');
           });
 
 
           $('#quedings').click(function(){
                 //获取到所有打勾的值
                 //console.log($('input:checked'));
-               arr1 = []; 
+               arr2 = []; 
              $('input:checked').each(function(){
-                 arr1.push($(this).val());
+                 arr2.push($(this).val());
              })
-             //console.log(arr1);
+             console.log(arr2);
              
             $.ajaxSetup({
                 headers: {
@@ -329,7 +356,7 @@
             });
              tid= $('#tid').val();
              gid = $('.gid').val();
-            $.post('/admin/goods/setattr',{data:arr1,tid:tid,gid:gid},function(res){
+            $.post('/admin/goods/setattr',{data:arr2,tid:tid,gid:gid},function(res){
                 //console.log(res);
                 if(res){
                     //console.log(res);
@@ -412,8 +439,60 @@
             })
           })
     </script>
+    <script>
+      
+      $('#shou_goods').click(function(){
+        if($(this).text() == '展开'){
+          $(this).text('收起')
+        }else{
+          $(this).text('展开')
+        }
+        $("#test_show_goods").fadeToggle();
+      })
+    </script>
+   <!-- 商品组合图片修改 -->
+    <script>
+      $('#group_pic').change(function(){
+        group_id = $('#group_id').val();
+        //原图片路径
+        yuan_pic = $('#gou_pic').attr("src");
+         //发送请求
+        $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+                  
+        });
+        var formData = new FormData($("#changepic")); 
+        //console.log($('#file_pic')[0]);
+        formData.append('pic',$('#group_pic')[0].files[0]);
+        formData.append('group_id',group_id);
+        formData.append('yuan_pic',yuan_pic);
+          $.ajax({ 
+             url: "/admin/goods/changepic",
+             type: 'POST', 
+             data: formData, 
+             contentType: false, 
+             processData: false, 
+             success: function (returndata) { 
+             // console.log(returndata);
+                  if(returndata == 2){
+                    alert('请上传符合图片格式的文件');
+                  }else if(returndata == 0){
+                     
+                    alert('服务器异常,请稍后再试');
+                  }else{
+                    //修改图片
+                    //console.log($('#gou_pic'));
+                    $('#gou_pic').attr("src","/uploads/"+returndata);
+                    alert('上传商品图成功');
+                  }
+             }, 
+            }); 
 
-    <!-- Demo Scripts (remove if not needed) -->
+      })
+
+    </script>
 
 </body>
 @section('slid')

@@ -38,6 +38,6 @@
     </tbody>
 
 </table>
-<div style="margin-top:10px"><button class="btn btn-info" style="width:100%">确认</button></div>
+<div style="margin-top:10px"><a href="/admin/goods" class="btn btn-info" style="width:100%">确认</a></div>
 </div>
 @endsection
