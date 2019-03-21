@@ -58,11 +58,12 @@ Route::middleware(['checklogin'])->group(function(){
     Route::resource('/admin/flink','Admin\FlinkController');
 
     //订单管理
+    Route::get('/admin/orders/{id}/datas','Admin\OrdersController@datas');
     Route::resource('/admin/orders','Admin\OrdersController');
-    Route::resource('/admin/orders/status','Admin\OrdersController@status');
 
 });
 //前台用户注册路由开始
+
 //注册界面
 Route::get('/home/register/index','Home\RegisterController@index');
 //邮箱注册
@@ -73,8 +74,11 @@ Route::post('/home/register/store','Home\RegisterController@store');
 Route::get('/home/register/sendMobileCode','Home\RegisterController@sendMobileCode');
 //用户激活
 Route::get('/home/register/change/{id}/{token}','Home\RegisterController@change');
+
 //用户登录界面
 Route::get('/home/login/index','Home\LoginController@index');
+Route::post('home/login/loginCheck','Home\LoginController@loginCheck');
+
 //前台用户注册路由结束
 //前台无限递归分类路由开始
 Route::get('/home','Home\IndexController@index');

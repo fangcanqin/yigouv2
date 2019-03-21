@@ -32,8 +32,7 @@
            <th>订单号</th> 
            <th>商品id</th> 
            <th>商品状态</th> 
-           <th>用户id</th> 
-           <th>地址id</th> 
+           <th>用户id</th>  
            <th>总金额</th> 
             <th>操作</th>
           </tr> 
@@ -45,7 +44,7 @@
            <td>{{ $val->order_num }}</td> 
            <td>{{ $val->gid }}</td> 
            <td>
-              <button><a href="/admin/orders/{{ $val->id }}"><?php switch($val->status){
+              <button><a href="/admin/orders/{{ $val->id }}" ><?php switch($val->status){
                 case 0:
                   echo '未付款';
                 break;
@@ -72,17 +71,18 @@
                 break;
               }?></a></button>
            </td> 
-           <td>{{ $val->uid }}</td> 
-           <td>{{ $val->address_id }}</td> 
+           <td>{{ $val->uid }}</td>  
            <td>{{ $val->total }}</td> 
            <td>
               <form action="/admin/orders/{{ $val->id }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-
-                <input type="submit" value="删除" class="btn btn-danger" >
-                <a href="/admin/orders/{{ $val->id }}/edit" class="btn btn-info">修改</a>
-              </form>             
+                <span class="btn-group">
+                <a href="/admin/orders/{{ $val->id }}/datas" class="btn">详情</a>           
+                <input type="submit" value="删除" class="btn btn-danger" >                
+                <a href="/admin/orders/{{ $val->id }}/edit" class="btn">修改</a>
+                </span>  
+              </form>                       
            </td>
           </tr>
           @endforeach 
@@ -91,7 +91,7 @@
        </body>
       </html>
      <div class="dataTables_info" id="DataTables_Table_1_info">
-      获取数据为 {{ $orders->total() }} 条
+      【共 {{ $orders->total() }} 条数据】
      </div>
      <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
       {{ $orders->appends([])->links() }}
@@ -99,8 +99,4 @@
     </div> 
    </div> 
   </div>
-  <script>
-      var ajax = new XMLHTTPRequest();
-      alert(ajax);
-  </script>
 @endsection

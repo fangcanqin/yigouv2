@@ -16,4 +16,14 @@ class LoginController extends Controller
     {
         return view('home.login');
     }
+
+    /**
+     * 处理用户登录
+     * 
+     * @return view 处理用户登录视图
+     */
+    public function loginCheck(Request $request)
+    {
+        
+    }
 }

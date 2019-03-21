@@ -24,7 +24,7 @@ class OrdersStoreBlogPost extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'confirmed: == 1',
+            'phone' => 'regex:/^1[358][0-9]{9}$/',
         ];
     }
 
@@ -36,7 +36,7 @@ class OrdersStoreBlogPost extends FormRequest
     public function messages()
     {
         return [
-            'status.confirmed' => '商品已发货,不可修改收获地址',
+            'phone.regex' => '请填写正确的手机号',
         ];
     }
 }
