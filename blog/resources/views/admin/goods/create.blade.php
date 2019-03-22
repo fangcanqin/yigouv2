@@ -24,6 +24,42 @@
                     </select>
                 </div>
             </div>
+            <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">产品类型  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="type" value="{{old('type')}}">
+                </div>
+            </div>
+              <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">配料表  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="batching" value="{{old('batching')}}">
+                </div>
+            </div>
+            <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">产品规格  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="size" value="{{old('size')}}">
+                </div>
+            </div>
+            <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">保质期  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="period" value="{{old('period')}}">
+                </div>
+            </div>
+            <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">产品标准号  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="number" value="{{old('number') }}">
+                </div>
+            </div>
+             <div class="mws-form-row bordered">
+                <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">储存方法  :</label>
+                <div class="mws-form-item">
+                    <input type="text" class="large" name="method" value="{{old('method') }}">
+                </div>
+            </div>
             <div class="mws-form-row">
                 <label class="mws-form-label" style="text-align:center;font-weight:bold;font-size:15px">状态 :</label>
                 <div class="mws-form-item clearfix">

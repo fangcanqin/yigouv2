@@ -4,29 +4,38 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//µ¼ÈëÉÌÆ·±í
+//å¯¼å…¥å•†å“ç±»
 use App\Models\Goods;
+//å¯¼å…¥åº“å­˜è¡¨
 use App\Models\Sku_details;
+//å•†å“è¯¦æƒ…å‚æ•°è¡¨
+use App\Models\Goods_details;
+use App\Http\Controllers\Home\IndexController;
 class IntroductionController extends Controller
 {
-    //»ñÈ¡ÉÌÆ·ÏêÇéĞÅÏ¢
+    //åŠ è½½å•†å“è¯¦æƒ…é¡µé¢
     public function index($id)
     {   
-        //»ñÈ¡¸ÃÉÌÆ·ĞÅÏ¢
+        //æŸ¥æ‰¾å¯¹åº”å•†å“ä¿¡æ¯
         $good = Goods::find($id);
-        //ÉÌÆ·×éºÏĞÅÏ¢
+        //è·å–å•†å“çš„ç»„åˆä¿¡æ¯
         $good_group = $good->goods_group;
-        dump($good_group);
-        return view('home.introduction',['good'=>$good,'good_group'=>$good_group]);
+        //è·å–å•†å“å‚æ•°ä¿¡æ¯
+        $good_details = Goods_details::where('gid',$id)->first();
+        //è®¾ç½®çœ‹äº†åˆçœ‹æ¨¡å— è¯¥æ¨¡å—æ˜¾ç¤ºçš„å•†å“ä¸ºåŒç±»å‹äº§å“
+        //è·å–æ”¹ç±»id
+        $cid = $good->cid;
+        $look = IndexController::getInfo($cid,7);
+        //dump($look);
+        return view('home.introduction',['good'=>$good,'good_group'=>$good_group,'good_details'=>$good_details,'look'=>$look,'id'=>$id]);
     }
 
-    //¶¯Ì¬»ñÈ¡ÉÌÆ·µ¥¼Û
+    //è·å–å•†å“ä»·æ ¼
     public function getPrice(Request $request)
     {
-        //»ñÈ¡ÉÌÆ·×éĞÅÏ¢
+        //æ ¹æ®å•†å“ç»„å
         $group = $request->input('data');
-        //Í¨¹ı¸ÃĞÅÏ¢²éÕÒ¶ÔÓ¦ĞÅÏ¢
-        
+        //æŸ¥è¯¢å¹¶è¿”å›æ•°æ®
         return sku_details::where('group',$group)->first();
     }
 }

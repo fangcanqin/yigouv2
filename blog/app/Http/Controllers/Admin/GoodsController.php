@@ -19,6 +19,8 @@ use App\models\Sku;
 //导入库存模型类
 use App\models\Sku_details;
 use Illuminate\Support\Facades\Storage;
+//导入商品详情表
+use App\Models\Goods_details;
 class GoodsController extends Controller
 {
     
@@ -74,8 +76,20 @@ class GoodsController extends Controller
         $goods->descr = strip_tags($request->input('descr','商品暂无描述'));
         //执行添加操作
         $res1 = $goods->save();
+        //设置商品参数
+        $goods_details = new Goods_details();
+        $goods_details->gid = $goods->id;
+        $goods_details->type = $request->input('type','商家暂未设置');
+        $goods_details->region = $request->input('region','商家暂未设置');
+        $goods_details->batching = $request->input('batching','商家暂未设置');
+        $goods_details->size = $request->input('size','商家暂未设置');
+        $goods_details->period = $request->input('period','商家暂未设置');
+        $goods_details->number = $request->input('number','商家暂未设置');
+        $goods_details->method = $request->input('method','商家暂未设置');
+        //执行添加操作
+         $res2 = $goods_details->save();
         //判断商品是否参数是否正常设置
-        if($res1){
+        if($res1 && $res2){
             //事务确认
             DB::commit();
             return redirect("/admin/goods/version/{$request->input('cate_id')}/{$goods->id}")->with('success','请为商品添加型号');

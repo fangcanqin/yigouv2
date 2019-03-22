@@ -71,6 +71,7 @@ Route::middleware(['checklogin'])->group(function(){
 
 });
 //前台用户注册路由开始
+//用户登录
 
 //注册界面
 Route::get('/home/register/index','Home\RegisterController@index');
@@ -95,3 +96,9 @@ Route::get('/home','Home\IndexController@index');
 Route::get('/home/introduction/index/{id}','Home\IntroductionController@index');
 //获取商品单价
 Route::get('/home/introduction/getprice','Home\IntroductionController@getPrice');
+//加入购物车
+Route::post('/home/shopcart/addcart','Home\ShopcartController@addCart');
+//显示购物页面
+Route::get('/home/shopcart/index','Home\ShopcartController@index');
+//动态改变用户购物车信息
+Route::post('/home/shopcart/changecart','Home\ShopcartController@changeCart');
