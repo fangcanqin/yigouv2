@@ -136,7 +136,8 @@
  		preg_pwd = /^\w{6,10}$/;
  		if(!preg_pwd.test(user_pwd)){
  			$('#password').val('');
- 			alert('密码格式为8-10位的任意字母数字下划线');
+      $('#passwordRepeat').val('');
+ 			alert('密码格式为6-10位的任意字母数字下划线');
 	    	return false;
  		}
  		

@@ -15,6 +15,9 @@ use DB;
 use App\Models\Goods;
 //导入库存表模型类
 use App\Models\Sku_details;
+//用户表
+use App\Models\Users;
+use App\Models\Cart;
 class IndexController extends Controller
 {
     /**
@@ -22,8 +25,23 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()  
+    public function index(Request $request)  
     {
+        //获取用户信息
+        if ($request->session()->has('username')) {
+            $username = session('username');
+            //获取用户头像
+            $userInfo = Users::find(session('username_id'))->user_details;
+            //获取用户名
+            $name = Users::find(session('username_id'))->username;
+        }else{
+            $username = ' ';
+            $userInfo = ' ';
+            $name = ' ';
+        }
+        //获取购物车数量
+        $good_num = self::cartNum(session('username_id'));
+        //dump($good_num);
         //获取轮播图数据
         $slid = self::showSlid();
         //获取轮播图
@@ -32,12 +50,38 @@ class IndexController extends Controller
         $huodong = self::getCates(78);
         //获取分类商品数据
         $cates = self::getCates(0);
-        //点心/蛋糕 产品 cid 32
+        // 点心/蛋糕 产品 cid 32
         $cake = self::getInfo(32,8);
-        //获取点心蛋糕的 二级分类
+         // 获取点心蛋糕的 二级分类
         $cake_two = self::getCates(32);
-        //dump($cake_two);
-        return view('home.index',['slid'=>$slid,'notice'=>$notice,'huodong'=>$huodong,'cates'=>$cates,'cake'=>$cake,'cake_two'=>$cake_two]);
+        // 饼干/膨化 产品cid  33
+        $cake2 = self::getInfo(33,8);
+        $cake_two2 = self::getCates(33);
+        // 熟食/肉类
+        $cake3 = self::getInfo(34,8);
+        $cake_two3 = self::getCates(34);
+        // 糖果/蜜饯
+        $cake4 = self::getInfo(35,8);
+        $cake_two4 = self::getCates(35);
+        // 素食/卤味
+        $cake5 = self::getInfo(36,8);
+        $cake_two5 = self::getCates(36);
+        // 巧克力
+        $cake6 = self::getInfo(37,8);
+        $cake_two6 = self::getCates(37);
+        //坚果/炒货
+        $cake7 = self::getInfo(38,8);
+        $cake_two7 = self::getCates(38);
+        // 品牌/礼包
+        $cake8 = self::getInfo(39,8);
+        $cake_two8 = self::getCates(39);
+        // 海味/河鲜
+        $cake9 = self::getInfo(40,8);
+        $cake_two9 = self::getCates(40);
+        //花茶/果茶
+        $cake10 = self::getInfo(41,8);
+        $cake_two10 = self::getCates(41);
+        return view('home.index',['slid'=>$slid,'notice'=>$notice,'huodong'=>$huodong,'cates'=>$cates,'cake'=>$cake,'cake_two'=>$cake_two,'username'=>$username,'userInfo'=>$userInfo,'name'=>$name,'good_num'=>$good_num,'cake2'=>$cake2,'cake_two2'=>$cake_two2,'cake3'=>$cake3,'cake_two3'=>$cake_two3,'cake4'=>$cake4,'cake_two4'=>$cake_two4,'cake5'=>$cake5,'cake_two5'=>$cake_two5,'cake6'=>$cake6,'cake_two6'=>$cake_two6,'cake7'=>$cake7,'cake_two7'=>$cake_two7,'cake8'=>$cake8,'cake_two8'=>$cake_two8,'cake9'=>$cake9,'cake_two9'=>$cake_two9,'cake10'=>$cake10,'cake_two10'=>$cake_two10]);
     }
 
     public static function getInfo($cid,$num = 8)
@@ -83,4 +127,9 @@ class IndexController extends Controller
         return $cates;
     }
 
+    //获取当前购物车数量
+    public static function cartNum($uid)
+    {
+        return Cart::where('uid',$uid)->count();
+    }
 }

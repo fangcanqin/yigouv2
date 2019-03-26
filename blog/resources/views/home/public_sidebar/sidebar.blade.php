@@ -5,9 +5,9 @@
       <a href="#"> <span class="setting"></span> </a> 
       <div class="ibar_login_box status_login"> 
        <div class="avatar_box"> 
-        <p class="avatar_imgbox"><img src="/uploads/images/no-img_mid_.jpg" /></p> 
+        <p class="avatar_imgbox"><img src="{{$userInfo->face  or '/uploads/head/mr.jpg'}} " style="width:80px" /></p> 
         <ul class="user_info"> 
-         <li>用户名：sl1903</li> 
+         <li>用户名: {{$name}}</li> 
          <li>级&nbsp;别：普通会员</li> 
         </ul> 
        </div> 
@@ -21,7 +21,7 @@
      <div id="shopCart" class="item"> 
       <a href="/home/shopcart/index"> <span class="message"></span> </a> 
       <p> 购物车 </p> 
-      <p class="cart_num">0</p> 
+      <p class="cart_num">{{$good_num or 0}}</p> 
      </div> 
      <div id="asset" class="item"> 
       <a href="#"> <span class="view"></span> </a> 

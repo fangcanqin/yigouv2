@@ -71,7 +71,6 @@ Route::middleware(['checklogin'])->group(function(){
 
 });
 //前台用户注册路由开始
-//用户登录
 
 //注册界面
 Route::get('/home/register/index','Home\RegisterController@index');
@@ -86,6 +85,9 @@ Route::get('/home/register/change/{id}/{token}','Home\RegisterController@change'
 
 //用户登录界面
 Route::get('/home/login/index','Home\LoginController@index');
+//注销
+Route::get('/home/outlogin','Home\LoginController@outLogin');
+//登录验证
 Route::post('home/login/loginCheck','Home\LoginController@loginCheck');
 
 //前台用户注册路由结束
@@ -102,3 +104,44 @@ Route::post('/home/shopcart/addcart','Home\ShopcartController@addCart');
 Route::get('/home/shopcart/index','Home\ShopcartController@index');
 //动态改变用户购物车信息
 Route::post('/home/shopcart/changecart','Home\ShopcartController@changeCart');
+//重新修改商品
+Route::post('/home/shopcart/editgroup','Home\ShopcartController@editGroup');
+//点击修改商品
+Route::post('/home/shopcart/clickgroup','Home\ShopcartController@clickGroup');
+//执行修改商品
+Route::post('/home/shopcart/newgroup','Home\ShopcartController@newGroup');
+//单个删除商品
+Route::get('/home/shopcart/delete','Home\ShopcartController@delete');
+//批量删除商品
+Route::post('/home/shopcart/deleteall','Home\ShopcartController@deleteAll');
+//选中购买的商品
+Route::get('/home/shopcart/selectgood','Home\ShopcartController@selectGood');
+Route::get('/home/shopcart/getgoodtotal','Home\ShopcartController@getGoodTotal');
+//获取当前的商品件数和合计 getGoodTotal
+Route::get('/home/shopcart/goodtotal','Home\ShopcartController@goodTotal');
+//结算页面
+Route::get('/home/pay/index','Home\PayController@index');
+//结算页面的添加地址
+Route::post('/home/pay/insert','Home\PayController@insert');
+//个人中心
+Route::get('/home/personal/index','Home\PersonalController@index');
+//个人资料
+Route::get('/home/information/index','Home\InformationController@index');
+//修改个人信息
+Route::post('/home/information/editinfo','Home\InformationController@editInfo');
+//修改头像
+Route::post('/home/information/changeface','Home\InformationController@changeFace');
+//地址管理
+Route::get('/home/address/index','Home\AddressController@index');
+//获取地址
+Route::get('/home/address/district','Home\AddressController@district');
+//设置默认地址
+Route::get('/home/address/changestatus','Home\AddressController@changeStatus');
+//添加地址
+Route::post('/home/address/insert','Home\AddressController@insert');
+//修改地址界面
+Route::get('/home/address/edit/{id}','Home\AddressController@edit');
+//执行修改
+Route::post('/home/address/update','Home\AddressController@update');
+//删除收件人
+Route::get('/home/address/del','Home\AddressController@del');

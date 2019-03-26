@@ -11,11 +11,25 @@ use App\Models\Sku_details;
 //商品详情参数表
 use App\Models\Goods_details;
 use App\Http\Controllers\Home\IndexController;
+use App\Models\Users;
 class IntroductionController extends Controller
 {
     //加载商品详情页面
-    public function index($id)
+    public function index($id,Request $request)
     {   
+        //获取用户信息
+        if ($request->session()->has('username')) {
+            $username = session('username');
+            //获取用户头像
+            $userInfo = Users::find(session('username_id'))->user_details;
+             //获取用户名
+            $name = Users::find(session('username_id'))->username;
+        }else{
+            $username = ' ';
+            $userInfo = ' ';
+            $name = ' ';
+        }
+        $good_num = IndexController::cartNum(session('username_id'));
         //查找对应商品信息
         $good = Goods::find($id);
         //获取商品的组合信息
@@ -27,7 +41,7 @@ class IntroductionController extends Controller
         $cid = $good->cid;
         $look = IndexController::getInfo($cid,7);
         //dump($look);
-        return view('home.introduction',['good'=>$good,'good_group'=>$good_group,'good_details'=>$good_details,'look'=>$look,'id'=>$id]);
+        return view('home.introduction',['good'=>$good,'good_group'=>$good_group,'good_details'=>$good_details,'look'=>$look,'id'=>$id,'username'=>$username,'userInfo'=>$userInfo,'name'=>$name,'good_num'=>$good_num]);
     }
 
     //获取商品价格

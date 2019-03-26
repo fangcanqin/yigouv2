@@ -12,14 +12,22 @@
   <script src="/AmazeUI-2.4.2/assets/js/jquery.min.js"></script> 
   <script src="/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script> 
  </head> 
- <body> 
+ <body>
+
+
+
   <div class="hmtop" > 
-   <!--顶部导航条 --> 
+
    <div class="am-container header"> 
     <ul class="message-l"> 
      <div class="topMessage"> 
-      <div class="menu-hd"> 
-       <a href="/home/login/index" target="_top" class="h">亲，请登录</a> 
+      <div class="menu-hd">
+       @if($username != ' ')
+        <font>账号:</font><a href="javascript:;" target="_top" class="h" style="color:blue">{{$username}}</a>
+        <a href="/home/outlogin" target="_top" class="h" style="color:red">注销</a> 
+       @else
+        <a href="/home/login/index" target="_top" class="h">亲，请登录</a> 
+       @endif
        <a href="/home/register/index" target="_top">免费注册</a> 
       </div> 
      </div> 
@@ -32,7 +40,7 @@
      </div> 
      <div class="topMessage my-shangcheng"> 
       <div class="menu-hd MyShangcheng">
-       <a href="个人中心.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+       <a href="/home/personal/index" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
       </div> 
      </div> 
      <div class="topMessage mini-cart"> 
@@ -47,7 +55,7 @@
      </div>
     </ul> 
    </div> 
-   <!--悬浮搜索框--> 
+   
    <div class="nav white"> 
     <div class="logo">
      <img src="/uploads/images/logo.png" />
@@ -217,11 +225,22 @@
        @endforeach
        <div class="mod-vip"> 
         <div class="m-baseinfo"> 
-         <a href="person/index.html"> <img src="/uploads/images/getAvatar.do.jpg" /> </a> 
-         <em> Hi,<span class="s-name">小易</span> <a href="#"><p>点击更多优惠活动</p></a> </em> 
+         <a href="person/index.html">
+         @if($userInfo != ' ')
+        <img src="{{$userInfo->face}}" /> 
+        @else 
+        <img src="/uploads/head/mr.jpg" /> 
+        @endif
+   </a> 
+         <em> Hi,<span class="s-name" style="font-size:10px">{{$username == ' '?'小易':$username}}</span> <a href="#"><p>点击更多优惠活动</p></a> </em> 
         </div> 
-        <div class="member-logout"> 
+        <div class="member-logout">
+         @if($username != ' ')
+         <a class="am-btn-warning btn" href="/home/outlogin">注销</a> 
+         @else 
          <a class="am-btn-warning btn" href="/home/login/index">登录</a> 
+         @endif
+         
          <a class="am-btn-warning btn" href="/home/register/index">注册</a> 
         </div> 
         <div class="member-login"> 
@@ -399,7 +418,7 @@
         <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="/home/introduction/index/{{$cake_v->id}}">
+      <a href="/home/introduction/index/{{$cake_v->id}}" >
         <img src="{{$cake_v['detail']->pic}}" /></a>
     </div> 
     @endforeach
@@ -410,137 +429,70 @@
 
 
 <div id="f2">
-  <!--坚果-->
+  <!-- 饼干/膨化 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>坚果</h4>
-      <h3>酥酥脆脆，回味无穷</h3>
+      <h4>饼干/膨化</h4>
+      <h3>每一款饼干/膨化都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">腰果</a>
-        <a href="# ">松子</a>
-        <a href="# ">夏威夷果</a>
-        <a href="# ">碧根果</a>
-        <a href="# ">开心果</a>
-        <a href="# ">核桃仁</a></div>
+      @foreach($cake_two2 as $cake_two2_k => $cake_two2_v)
+        <a href="# ">{{$cake_two2_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
   </div>
-  <div class="am-g am-g-fixed floodThree ">
-    <div class="am-u-sm-4 text-four list">
+  <div class="am-g am-g-fixed floodFour">
+    <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two2 as $cake_two2_k2 => $cake_two2_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two2_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
-        <img src="images/act1.png " />
         <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div></div>
-      </a>
+          <div class="title ">开抢啦！</div>
+          <div class="sub-title ">零食大礼包</div></div>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-4 text-four">
-      <a href="# ">
-        <img src="images/6.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-4 text-four sug">
-      <a href="# ">
-        <img src="images/7.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big ">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five ">
-      <a href="# ">
-        <img src="images/8.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five sug">
-      <a href="# ">
-        <img src="images/9.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
+
+    @foreach($cake2 as $cake_k2 => $cake_v2)
+   
+    <div class="am-u-sm-7 am-u-md-4 text-two">
+      <div class="outer-con ">
+        <div class="title ">{{$cake_v2->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v2['detail']->price}}</div>
+        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+      </div>
+      <a href="/home/introduction/index/{{$cake_v2->id}}">
+        <img src="{{$cake_v2['detail']->pic}}" /></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
 <div id="f3">
-  <!--甜点-->
+  <!-- 熟食/肉类 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>甜品</h4>
-      <h3>每一道甜品都有一个故事</h3>
+      <h4>熟食/肉类</h4>
+      <h3>每一款熟食/肉类都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">桂花糕</a>
-        <a href="# ">奶皮酥</a>
-        <a href="# ">栗子糕</a>
-        <a href="# ">马卡龙</a>
-        <a href="# ">铜锣烧</a>
-        <a href="# ">豌豆黄</a></div>
+      @foreach($cake_two3 as $cake_two3_k => $cake_two3_v)
+        <a href="# ">{{$cake_two3_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
@@ -548,227 +500,104 @@
   <div class="am-g am-g-fixed floodFour">
     <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two3 as $cake_two3_k2 => $cake_two3_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two3_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
         <div class="outer-con ">
           <div class="title ">开抢啦！</div>
           <div class="sub-title ">零食大礼包</div></div>
-        <img src="images/act1.png " /></a>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-7 am-u-md-4 text-two sug">
-      <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/2.jpg" /></a>
-    </div>
+
+    @foreach($cake3 as $cake_k3 => $cake_v3)
+   
     <div class="am-u-sm-7 am-u-md-4 text-two">
       <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
+        <div class="title ">{{$cake_v3->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v3['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="# ">
-        <img src="images/1.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three big">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three sug">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/3.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/4.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
+      <a href="/home/introduction/index/{{$cake_v3->id}}">
+        <img src="{{$cake_v3['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
+
 <div id="f4">
-  <!--坚果-->
+  <!-- 糖果/蜜饯 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>坚果</h4>
-      <h3>酥酥脆脆，回味无穷</h3>
+      <h4>糖果/蜜饯</h4>
+      <h3>每一款糖果/蜜饯都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">腰果</a>
-        <a href="# ">松子</a>
-        <a href="# ">夏威夷果</a>
-        <a href="# ">碧根果</a>
-        <a href="# ">开心果</a>
-        <a href="# ">核桃仁</a></div>
+      @foreach($cake_two4 as $cake_two4_k => $cake_two4_v)
+        <a href="# ">{{$cake_two4_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
   </div>
-  <div class="am-g am-g-fixed floodThree ">
-    <div class="am-u-sm-4 text-four list">
+  <div class="am-g am-g-fixed floodFour">
+    <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two4 as $cake_two4_k2 => $cake_two4_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two4_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
-        <img src="images/act1.png " />
         <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div></div>
-      </a>
+          <div class="title ">开抢啦！</div>
+          <div class="sub-title ">零食大礼包</div></div>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-4 text-four">
-      <a href="# ">
-        <img src="images/6.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-4 text-four sug">
-      <a href="# ">
-        <img src="images/7.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big ">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five ">
-      <a href="# ">
-        <img src="images/8.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five sug">
-      <a href="# ">
-        <img src="images/9.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
+
+    @foreach($cake4 as $cake_k4 => $cake_v4)
+   
+    <div class="am-u-sm-7 am-u-md-4 text-two">
+      <div class="outer-con ">
+        <div class="title ">{{$cake_v4->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v4['detail']->price}}</div>
+        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+      </div>
+      <a href="/home/introduction/index/{{$cake_v4->id}}">
+        <img src="{{$cake_v4['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
 <div id="f5">
-  <!--甜点-->
+  <!-- 素食/卤味 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>甜品</h4>
-      <h3>每一道甜品都有一个故事</h3>
+      <h4>素食/卤味</h4>
+      <h3>每一款熟食/肉类都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">桂花糕</a>
-        <a href="# ">奶皮酥</a>
-        <a href="# ">栗子糕</a>
-        <a href="# ">马卡龙</a>
-        <a href="# ">铜锣烧</a>
-        <a href="# ">豌豆黄</a></div>
+      @foreach($cake_two5 as $cake_two5_k => $cake_two5_v)
+        <a href="# ">{{$cake_two5_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
@@ -776,227 +605,104 @@
   <div class="am-g am-g-fixed floodFour">
     <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two5 as $cake_two5_k2 => $cake_two5_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two5_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
         <div class="outer-con ">
           <div class="title ">开抢啦！</div>
           <div class="sub-title ">零食大礼包</div></div>
-        <img src="images/act1.png " /></a>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-7 am-u-md-4 text-two sug">
-      <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/2.jpg" /></a>
-    </div>
+
+    @foreach($cake5 as $cake_k5 => $cake_v5)
+   
     <div class="am-u-sm-7 am-u-md-4 text-two">
       <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
+        <div class="title ">{{$cake_v5->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v5['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="# ">
-        <img src="images/1.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three big">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three sug">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/3.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/4.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
+      <a href="/home/introduction/index/{{$cake_v5->id}}">
+        <img src="{{$cake_v5['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
 <div id="f6">
-  <!--坚果-->
+  <!-- 巧克力 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>坚果</h4>
-      <h3>酥酥脆脆，回味无穷</h3>
+      <h4>巧克力</h4>
+      <h3>每一款巧克力都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">腰果</a>
-        <a href="# ">松子</a>
-        <a href="# ">夏威夷果</a>
-        <a href="# ">碧根果</a>
-        <a href="# ">开心果</a>
-        <a href="# ">核桃仁</a></div>
+      @foreach($cake_two6 as $cake_two6_k => $cake_two6_v)
+        <a href="# ">{{$cake_two6_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
   </div>
-  <div class="am-g am-g-fixed floodThree ">
-    <div class="am-u-sm-4 text-four list">
+  <div class="am-g am-g-fixed floodFour">
+    <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two6 as $cake_two6_k2 => $cake_two6_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two6_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
-        <img src="images/act1.png " />
         <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div></div>
-      </a>
+          <div class="title ">开抢啦！</div>
+          <div class="sub-title ">零食大礼包</div></div>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-4 text-four">
-      <a href="# ">
-        <img src="images/6.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-4 text-four sug">
-      <a href="# ">
-        <img src="images/7.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big ">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five ">
-      <a href="# ">
-        <img src="images/8.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five sug">
-      <a href="# ">
-        <img src="images/9.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
+
+    @foreach($cake6 as $cake_k6 => $cake_v6)
+   
+    <div class="am-u-sm-7 am-u-md-4 text-two">
+      <div class="outer-con ">
+        <div class="title ">{{$cake_v6->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v6['detail']->price}}</div>
+        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+      </div>
+      <a href="/home/introduction/index/{{$cake_v6->id}}">
+        <img src="{{$cake_v6['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
+
 <div id="f7">
-  <!--甜点-->
+  <!-- 坚果/炒货 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>甜品</h4>
-      <h3>每一道甜品都有一个故事</h3>
+      <h4>坚果/炒货</h4>
+      <h3>每一款坚果/炒货都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">桂花糕</a>
-        <a href="# ">奶皮酥</a>
-        <a href="# ">栗子糕</a>
-        <a href="# ">马卡龙</a>
-        <a href="# ">铜锣烧</a>
-        <a href="# ">豌豆黄</a></div>
+      @foreach($cake_two7 as $cake_two7_k => $cake_two7_v)
+        <a href="# ">{{$cake_two7_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
@@ -1004,227 +710,52 @@
   <div class="am-g am-g-fixed floodFour">
     <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two7 as $cake_two7_k2 => $cake_two7_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two7_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
         <div class="outer-con ">
           <div class="title ">开抢啦！</div>
           <div class="sub-title ">零食大礼包</div></div>
-        <img src="images/act1.png " /></a>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-7 am-u-md-4 text-two sug">
-      <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/2.jpg" /></a>
-    </div>
+
+    @foreach($cake7 as $cake_k7 => $cake_v7)
+   
     <div class="am-u-sm-7 am-u-md-4 text-two">
       <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
+        <div class="title ">{{$cake_v7->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v7['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="# ">
-        <img src="images/1.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three big">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three sug">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/3.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/4.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
+      <a href="/home/introduction/index/{{$cake_v7->id}}">
+        <img src="{{$cake_v7['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
+
+
 <div id="f8">
-  <!--坚果-->
+  <!-- 品牌/礼包 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>坚果</h4>
-      <h3>酥酥脆脆，回味无穷</h3>
+      <h4>品牌/礼包</h4>
+      <h3>每一款品牌/礼包都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">腰果</a>
-        <a href="# ">松子</a>
-        <a href="# ">夏威夷果</a>
-        <a href="# ">碧根果</a>
-        <a href="# ">开心果</a>
-        <a href="# ">核桃仁</a></div>
+      @foreach($cake_two8 as $cake_two8_k => $cake_two8_v)
+        <a href="# ">{{$cake_two8_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
-          <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
-      </span>
-    </div>
-  </div>
-  <div class="am-g am-g-fixed floodThree ">
-    <div class="am-u-sm-4 text-four list">
-      <div class="word">
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-      </div>
-      <a href="# ">
-        <img src="images/act1.png " />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div></div>
-      </a>
-      <div class="triangle-topright"></div>
-    </div>
-    <div class="am-u-sm-4 text-four">
-      <a href="# ">
-        <img src="images/6.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-4 text-four sug">
-      <a href="# ">
-        <img src="images/7.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big ">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five ">
-      <a href="# ">
-        <img src="images/8.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five sug">
-      <a href="# ">
-        <img src="images/9.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="clear "></div>
-</div>
-<div id="f9">
-  <!--甜点-->
-  <div class="am-container ">
-    <div class="shopTitle ">
-      <h4>甜品</h4>
-      <h3>每一道甜品都有一个故事</h3>
-      <div class="today-brands ">
-        <a href="# ">桂花糕</a>
-        <a href="# ">奶皮酥</a>
-        <a href="# ">栗子糕</a>
-        <a href="# ">马卡龙</a>
-        <a href="# ">铜锣烧</a>
-        <a href="# ">豌豆黄</a></div>
-      <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
@@ -1232,210 +763,141 @@
   <div class="am-g am-g-fixed floodFour">
     <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two8 as $cake_two8_k2 => $cake_two8_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two8_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
         <div class="outer-con ">
           <div class="title ">开抢啦！</div>
           <div class="sub-title ">零食大礼包</div></div>
-        <img src="images/act1.png " /></a>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-7 am-u-md-4 text-two sug">
-      <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/2.jpg" /></a>
-    </div>
+
+    @foreach($cake8 as $cake_k8 => $cake_v8)
+   
     <div class="am-u-sm-7 am-u-md-4 text-two">
       <div class="outer-con ">
-        <div class="title ">雪之恋和风大福</div>
-        <div class="sub-title ">¥13.8</div>
+        <div class="title ">{{$cake_v8->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v8['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="# ">
-        <img src="images/1.jpg" /></a>
+      <a href="/home/introduction/index/{{$cake_v8->id}}">
+        <img src="{{$cake_v8['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
+  </div>
+  <div class="clear "></div>
+</div>
+
+<div id="f9">
+  <!-- 海味/河鲜 -->
+  <div class="am-container ">
+    <div class="shopTitle ">
+      <h4>海味/河鲜</h4>
+      <h3>每一款海味/河鲜都有一个故事</h3>
+      <div class="today-brands ">
+      @foreach($cake_two9 as $cake_two9_k => $cake_two9_v)
+        <a href="# ">{{$cake_two9_v->name}}</a>
+      @endforeach
+        </div>
+      <span class="more ">
+        <a href="#">更多美味
+          <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
+      </span>
     </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three big">
+  </div>
+  <div class="am-g am-g-fixed floodFour">
+    <div class="am-u-sm-5 am-u-md-4 text-one list ">
+      <div class="word">
+        @foreach($cake_two9 as $cake_two9_k2 => $cake_two9_v2)
+        <a class="outer" href="#" >
+          <span class="inner">
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two9_v2->name}}</b></span>
+        </a>
+        @endforeach
+      </div>
+      <a href="# ">
+        <div class="outer-con ">
+          <div class="title ">开抢啦！</div>
+          <div class="sub-title ">零食大礼包</div></div>
+        <img src="/uploads/images/act1.png " /></a>
+      <div class="triangle-topright"></div>
+    </div>
+
+    @foreach($cake9 as $cake_k9 => $cake_v9)
+   
+    <div class="am-u-sm-7 am-u-md-4 text-two">
       <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
+        <div class="title ">{{$cake_v9->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v9['detail']->price}}</div>
         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
       </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three sug">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/3.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/4.jpg" /></a>
-    </div>
-    <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-      <div class="outer-con ">
-        <div class="title ">小优布丁</div>
-        <div class="sub-title ">¥4.8</div>
-        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-      </div>
-      <a href="# ">
-        <img src="images/5.jpg" /></a>
-    </div>
+      <a href="/home/introduction/index/{{$cake_v9->id}}">
+        <img src="{{$cake_v9['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
   <div class="clear "></div>
 </div>
 <div id="f10">
-  <!--坚果-->
+  <!-- 花茶/果茶 -->
   <div class="am-container ">
     <div class="shopTitle ">
-      <h4>坚果</h4>
-      <h3>酥酥脆脆，回味无穷</h3>
+      <h4>花茶/果茶</h4>
+      <h3>每一款花茶/果茶都有一个故事</h3>
       <div class="today-brands ">
-        <a href="# ">腰果</a>
-        <a href="# ">松子</a>
-        <a href="# ">夏威夷果</a>
-        <a href="# ">碧根果</a>
-        <a href="# ">开心果</a>
-        <a href="# ">核桃仁</a></div>
+      @foreach($cake_two10 as $cake_two10_k => $cake_two10_v)
+        <a href="# ">{{$cake_two10_v->name}}</a>
+      @endforeach
+        </div>
       <span class="more ">
-        <a href="# ">更多美味
+        <a href="#">更多美味
           <i class="am-icon-angle-right" style="padding-left:10px ;"></i></a>
       </span>
     </div>
   </div>
-  <div class="am-g am-g-fixed floodThree ">
-    <div class="am-u-sm-4 text-four list">
+  <div class="am-g am-g-fixed floodFour">
+    <div class="am-u-sm-5 am-u-md-4 text-one list ">
       <div class="word">
-        <a class="outer" href="#">
+        @foreach($cake_two10 as $cake_two10_k2 => $cake_two10_v2)
+        <a class="outer" href="#" >
           <span class="inner">
-            <b class="text">核桃</b></span>
+            <b class="text" style="font-size:12px;color:#ccc;font-weight:bold">{{$cake_two10_v2->name}}</b></span>
         </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
-        <a class="outer" href="#">
-          <span class="inner">
-            <b class="text">核桃</b></span>
-        </a>
+        @endforeach
       </div>
       <a href="# ">
-        <img src="images/act1.png " />
         <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div></div>
-      </a>
+          <div class="title ">开抢啦！</div>
+          <div class="sub-title ">零食大礼包</div></div>
+        <img src="/uploads/images/act1.png " /></a>
       <div class="triangle-topright"></div>
     </div>
-    <div class="am-u-sm-4 text-four">
-      <a href="# ">
-        <img src="images/6.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-4 text-four sug">
-      <a href="# ">
-        <img src="images/7.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big ">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five ">
-      <a href="# ">
-        <img src="images/8.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five sug">
-      <a href="# ">
-        <img src="images/9.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
-    <div class="am-u-sm-6 am-u-md-3 text-five big">
-      <a href="# ">
-        <img src="images/10.jpg" />
-        <div class="outer-con ">
-          <div class="title ">雪之恋和风大福</div>
-          <div class="sub-title ">¥13.8</div>
-          <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-        </div>
-      </a>
-    </div>
+
+    @foreach($cake10 as $cake_k10 => $cake_v10)
+   
+    <div class="am-u-sm-7 am-u-md-4 text-two">
+      <div class="outer-con ">
+        <div class="title ">{{$cake_v10->name}}</div>
+        <div class="sub-title" style="color:red;font-size:16px;font-weight:bold">¥ {{$cake_v10['detail']->price}}</div>
+        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
+      </div>
+      <a href="/home/introduction/index/{{$cake_v10->id}}">
+        <img src="{{$cake_v10['detail']->pic}}"  style="height:180px"/></a>
+    </div> 
+    @endforeach
+
   </div>
+  <div class="clear "></div>
+</div>
+
     <div class="footer "> 
      <div class="footer-hd "> 
       <p> <a href="/home">恒望科技</a> <b>|</b> <a href="/home">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b> <a href="# ">物流</a> </p> 
@@ -1464,7 +926,6 @@
   $('#searchInput').focus();
  </script>
  <script>
-
 
 
  </script>

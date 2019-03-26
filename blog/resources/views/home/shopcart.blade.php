@@ -17,7 +17,12 @@
    <ul class="message-l"> 
     <div class="topMessage"> 
      <div class="menu-hd"> 
-      <a href="#" target="_top" class="h">亲，请登录</a> 
+       @if($username != ' ')
+        <font>账号:</font><a href="javascript:;" target="_top" class="h" style="color:blue">{{$username}}</a>
+        <a href="/home/outlogin" target="_top" class="h" style="color:red">注销</a> 
+       @else
+        <a href="/home/login/index" target="_top" class="h">亲，请登录</a> 
+       @endif
       <a href="#" target="_top">免费注册</a> 
      </div> 
     </div> 
@@ -51,16 +56,33 @@
     <img src="/uploads/images/logo.png" />
    </div> 
    <div class="logoBig"> 
-    <li><img src="/uploads/images/logobig.png" /></li> 
+    <img src="/uploads/images/logobigs.png" style="width:140px">
    </div> 
    <div class="search-bar pr"> 
     <a name="index_none_header_sysc" href="#"></a> 
-    <form> 
-     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off" /> 
-     <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit" /> 
+    <form style="border-top-right-radius:30px;border-bottom-right-radius:30px;background:#FF5700"> 
+     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off" style="padding-left:20px;font-size:15px" /> 
+     <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit" style="border-top-right-radius:30px;border-bottom-right-radius:30px;outline:none;font-weight:bold" /> 
     </form> 
    </div> 
   </div> 
+  <div class="nav-table" style="margin-bottom:30px"> 
+    <div class="long-title">
+     <span class="all-goods">全部分类</span>
+    </div> 
+    <div class="nav-cont"> 
+      <ul> 
+      <li class="index"><a href="/home">首页</a></li> 
+      <li class="qc"><a href="#activity">活动</a></li> 
+      <li class="qc"><a href="#shopmain">店家推荐</a></li>
+     </ul> 
+     <div class="nav-extra"> 
+      <i class="am-icon-user-secret am-icon-md nav-user"></i>
+      <b></b>我的福利 
+      <i class="am-icon-angle-right" style="padding-left: 10px;"></i> 
+     </div> 
+    </div> 
+   </div>
   <div class="clear"></div> 
   <!--购物车 --> 
   <div class="concent"> 
@@ -104,7 +126,7 @@
       <div class="bd-promos"> 
        <div class="bd-has-promo">
         已享优惠:
-        <span class="bd-has-promo-content" id="sheng" >加载中...</span><span>￥</span>&nbsp;&nbsp;
+        <span class="bd-has-promo-content" id="sheng" >{{$good_total[0]*2}}</span><span>￥</span>&nbsp;&nbsp;
        </div> 
        <div class="act-promo"> 
         <a href="/home" target="_blank">更多优惠尽在易购<span class="gt">&gt;&gt;</span></a> 
@@ -113,68 +135,18 @@
       </div> 
      </div> 
      <div class="clear"></div> 
+
      <div class="bundle-main"> 
-    <!--   <ul class="item-content clearfix"> 
-       <li class="td td-chk"> 
-        <div class="cart-checkbox "> 
-         <input class="check" id="J_CheckBox_170037950254" name="items[]" value="170037950254" type="checkbox" /> 
-         <label for="J_CheckBox_170037950254"></label> 
-        </div> </li> 
-       <li class="td td-item"> 
-        <div class="item-pic"> 
-         <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12"> <img src="/uploads/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg" /></a> 
-        </div> 
-        <div class="item-info"> 
-         <div class="item-basic-info"> 
-          <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a> 
-         </div> 
-        </div> </li> 
-       <li class="td td-info"> 
-        <div class="item-props item-props-can"> 
-         <span class="sku-line">颜色：12#川南玛瑙</span> 
-         <span class="sku-line">包装：裸装</span> 
-         <span tabindex="0" class="btn-edit-sku theme-login">修改</span> 
-         <i class="theme-login am-icon-sort-desc"></i> 
-        </div> </li> 
-       <li class="td td-price"> 
-        <div class="item-price price-promo-promo"> 
-         <div class="price-content"> 
-          <div class="price-line"> 
-           <em class="price-original">78.00</em> 
-          </div> 
-          <div class="price-line"> 
-           <em class="J_Price price-now" tabindex="0">39.00</em> 
-          </div> 
-         </div> 
-        </div> </li> 
-       <li class="td td-amount"> 
-        <div class="amount-wrapper "> 
-         <div class="item-amount "> 
-          <div class="sl"> 
-           <input class="min am-btn" name="" type="button" value="-" /> 
-           <input class="text_box" name="" type="text" value="3" style="width:30px;" /> 
-           <input class="add am-btn" name="" type="button" value="+" /> 
-          </div> 
-         </div> 
-        </div> </li> 
-       <li class="td td-sum"> 
-        <div class="td-inner"> 
-         <em tabindex="0" class="J_ItemSum number">117.00</em> 
-        </div> </li> 
-       <li class="td td-op"> 
-        <div class="td-inner"> 
-         <a title="移入收藏夹" class="btn-fav" href="#"> 移入收藏夹</a> 
-         <a href="javascript:;" data-point-url="#" class="delete"> 删除</a> 
-        </div> </li> 
-      </ul>  -->
+    
       @foreach($cart as $cart_k => $cart_v)
       
-      <ul class="item-content clearfix"> 
-       <li class="td td-chk"> 
+      <ul class="item-content clearfix fu_ul"> 
+       <li class="td td-chk xd_li"> 
         <div class="cart-checkbox "> 
-         <input class="check" id="J_CheckBox_170037950254" name="items[]" value="170037950254" type="checkbox" /> 
+         <input class="check p_caozuo" id="J_CheckBox_170037950254" name="items[]" value="{{$cart_v->id}}" type="checkbox"  @if($cart_v->status == 1) checked @endif)/> 
          <label for="J_CheckBox_170037950254"></label> 
-        </div> </li> 
+        </div> 
+        </li> 
        <li class="td td-item"> 
         <div class="item-pic"> 
          <a href="#" target="_blank" data-title="{{$cart_v->name}}" class="J_MakePoint" data-point="tbcart.8.12"> <img style="width:80px" src="{{$cart_v->pic}}" class="itempic J_ItemImg" /></a> 
@@ -187,7 +159,8 @@
        <li class="td td-info"> 
         <div class="item-props item-props-can"> 
          <span class="sku-line">口味：{{$cart_v->group}}</span> 
-         <span tabindex="0" class="btn-edit-sku theme-login">修改</span> 
+         <input type="hidden" value="{{$cart_v->group}}"  class="edit_group"/>
+         <span tabindex="0" class="btn-edit-sku theme-login edit_good">修改</span> 
          <i class="theme-login am-icon-sort-desc"></i> 
         </div> </li> 
        <li class="td td-price"> 
@@ -220,83 +193,14 @@
         <div class="td-inner"> 
          <a title="移入收藏夹" class="btn-fav" href="#"> 移入收藏夹</a> 
          <a href="javascript:;" data-point-url="#" class="delete"> 删除</a> 
-        </div> </li> 
-      </ul> 
-      
+        </div> 
+        </li> 
+      </ul>     
       @endforeach
      </div> 
     </div>  
     <div class="clear"></div>  
-    <!-- <div class="bundle  bundle-last "> 
-     <div class="bundle-hd"> 
-      <div class="bd-promos"> 
-       <div class="bd-has-promo">
-        已享优惠:
-        <span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;
-       </div> 
-       <div class="act-promo"> 
-        <a href="#" target="_blank">第二支半价，第三支免费<span class="gt">&gt;&gt;</span></a> 
-       </div> 
-       <span class="list-change theme-login">编辑</span> 
-      </div> 
-     </div> 
-     <div class="clear"></div> 
-     <div class="bundle-main"> 
-      <ul class="item-content clearfix"> 
-       <li class="td td-chk"> 
-        <div class="cart-checkbox "> 
-         <input class="check" id="J_CheckBox_170769542747" name="items[]" value="170769542747" type="checkbox" /> 
-         <label for="J_CheckBox_170769542747"></label> 
-        </div> </li> 
-       <li class="td td-item"> 
-        <div class="item-pic"> 
-         <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12"> <img src="/uploads/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg" /></a> 
-        </div> 
-        <div class="item-info"> 
-         <div class="item-basic-info"> 
-          <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a> 
-         </div> 
-        </div> </li> 
-       <li class="td td-info"> 
-        <div class="item-props item-props-can"> 
-         <span class="sku-line">颜色：10#蜜橘色</span> 
-         <span class="sku-line">包装：两支手袋装（送彩带）</span> 
-         <span tabindex="0" class="btn-edit-sku theme-login">修改</span> 
-         <i class="theme-login am-icon-sort-desc"></i> 
-        </div> </li> 
-       <li class="td td-price"> 
-        <div class="item-price price-promo-promo"> 
-         <div class="price-content"> 
-          <div class="price-line"> 
-           <em class="price-original">78.00</em> 
-          </div> 
-          <div class="price-line"> 
-           <em class="J_Price price-now" tabindex="0">39.00</em> 
-          </div> 
-         </div> 
-        </div> </li> 
-       <li class="td td-amount"> 
-        <div class="amount-wrapper "> 
-         <div class="item-amount "> 
-          <div class="sl"> 
-           <input class="min am-btn" name="" type="button" value="-" /> 
-           <input class="text_box" name="" type="text" value="3" style="width:30px;" /> 
-           <input class="add am-btn" name="" type="button" value="+" /> 
-          </div> 
-         </div> 
-        </div> </li> 
-       <li class="td td-sum"> 
-        <div class="td-inner"> 
-         <em tabindex="0" class="J_ItemSum number">117.00</em> 
-        </div> </li> 
-       <li class="td td-op"> 
-        <div class="td-inner"> 
-         <a title="移入收藏夹" class="btn-fav" href="#"> 移入收藏夹</a> 
-         <a href="javascript:;" data-point-url="#" class="delete"> 删除</a> 
-        </div> </li> 
-      </ul> 
-     </div> 
-    </div>   -->
+
    </div> 
    <div class="clear"></div> 
    <div class="float-bar-wrapper"> 
@@ -308,13 +212,13 @@
      <span>全选</span> 
     </div> 
     <div class="operations"> 
-     <a href="#" hidefocus="true" class="deleteAll">删除</a> 
-     <a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a> 
+     <a href="javascript:;" hidefocus="true" class="deleteAll">删除</a> 
+     <a href="javascript:;" hidefocus="true" class="J_BatchFav">移入收藏夹</a> 
     </div> 
     <div class="float-bar-right"> 
      <div class="amount-sum"> 
       <span class="txt">已选商品</span> 
-      <em id="J_SelectedItemsCount">0</em>
+      <em id="J_SelectedItemsCount">{{$good_total[0]}}</em>
       <span class="txt">件</span> 
       <div class="arrow-box"> 
        <span class="selected-items-arrow"></span> 
@@ -323,10 +227,10 @@
      </div> 
      <div class="price-sum"> 
       <span class="txt">合计:</span> 
-      <strong class="price">&yen;<em id="J_Total" class="hejia">0.00</em></strong> 
+      <strong class="price">&yen;<em id="J_Total" class="hejia">{{$good_total[1]}}</em></strong> 
      </div> 
      <div class="btn-area"> 
-      <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算"> <span>结&nbsp;算</span></a> 
+      <a href="/home/pay/index" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算"> <span>结&nbsp;算</span></a> 
      </div> 
     </div> 
    </div> 
@@ -347,23 +251,20 @@
     <a href="javascript:;" title="关闭" class="close">&times;</a> 
    </div> 
    <div class="theme-popbod dform"> 
-    <form class="theme-signin" name="loginform" action="" method="post"> 
+    <form class="theme-signin" name="loginform" action="/home/shopcart/newgroup" method="post">
+    {{csrf_field()}} 
      <div class="theme-signin-left"> 
+     <input type="hidden" name="new_kowei" class="new_kowei" value=" " />
+     <input type="hidden" name="new_num" class="new_num" value=" " />
+     <input type="hidden" name="new_pic" class="new_pic" value=" " />
+     <input type="hidden" name="new_qian" class="new_qian" value=" " />
       <li class="theme-options"> 
        <div class="cart-title">
-        颜色：
+        口味：
        </div> 
-       <ul> 
-        <li class="sku-line selected">12#川南玛瑙<i></i></li> 
-        <li class="sku-line">10#蜜橘色+17#樱花粉<i></i></li> 
-       </ul> </li> 
-      <li class="theme-options"> 
-       <div class="cart-title">
-        包装：
-       </div> 
-       <ul> 
-        <li class="sku-line selected">包装：裸装<i></i></li> 
-        <li class="sku-line">两支手袋装（送彩带）<i></i></li> 
+       <ul class="fenglei"> 
+        <!-- <li class="sku-line selected"><i></i></li>  -->
+        <!-- <li class="sku-line">10#蜜橘色+17#樱花粉<i></i></li>  -->
        </ul> </li> 
       <div class="theme-options"> 
        <div class="cart-title number">
@@ -371,28 +272,29 @@
        </div> 
        <dd> 
         <input class="min am-btn am-btn-default" name="" type="button" value="-" /> 
-        <input class="text_box" name="" type="text"  value="1" style="width:30px;" /> 
+        <input class="text_box edit_num" name="" type="text"  value="1" style="width:30px;" /> 
         <input class="add am-btn am-btn-default" name="" type="button" value="+" /> 
-        <span class="tb-hidden">库存<span class="stock">1000</span>件</span> 
+        <span class="tb-hidden"><span class="stock"></span>件</span> 
        </dd> 
-      </div> 
+      </div>
+
       <div class="clear"></div> 
       <div class="btn-op"> 
-       <div class="btn am-btn am-btn-warning">
-        确认
+       <div >
+       <input type="submit" value="确定" class="btn am-btn am-btn-warning" />
        </div> 
-       <div class="btn close am-btn am-btn-warning">
+       <div class="btn close am-btn am-btn-warning quxiao">
         取消
        </div> 
       </div> 
      </div> 
      <div class="theme-signin-right"> 
       <div class="img-info"> 
-       <img src="/uploads/images/kouhong.jpg_80x80.jpg" /> 
+       <img src="/uploads/images/kouhong.jpg_80x80.jpg" class="edit_pic" /> 
       </div> 
       <div class="text-info"> 
-       <span class="J_Price price-now">&yen;39.00</span>
-       <span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span> 
+       <span class="J_Price price-now ">&yen;<font class="edit_price"></font></span>
+       <span id="Stock" class="tb-hidden">库存:<span class="stock edit_kucun"</span>件</span> 
       </div> 
      </div> 
     </form> 
@@ -409,22 +311,19 @@
  <script>
      //页面刷新自动计算当前优惠
      $(document).ready(function(){
-       sum = 0;
-        $('.suanyouhui').each(function(){
-           sum += parseInt($(this).val());
-        });
+       // sum = 0;
+       //  $('.suanyouhui').each(function(){
+       //     sum += parseInt($(this).val());
+       //  });
         //改变优惠金额
-        $('#sheng').html(sum*2);
+        //$('#sheng').html(sum*2);
+        //$('#sheng').html(0.00);
         //改变当前商品件数
-        $('#J_SelectedItemsCount').html(sum);
-
-        total_price = 0
+        //$('#J_SelectedItemsCount').html(sum);
+        //total_price = 0
         //总和
-        $('.xiaoji').each(function(){
-           total_price += parseFloat($(this).html());
-        });
-       
-        $('#J_Total').html((total_price).toFixed(2));
+
+        
       });
 
    
@@ -448,37 +347,14 @@
            group_name = $(obj).next().attr('name');
            // console.log(good_num);
            // console.log(group_name);
-           //减少优惠价
-           $('#sheng').html($('#sheng').html()-2);
+          
            //计算小计
            //获取单价
            good_price = $(obj).parent().find('.tmp_price').val();
            //获取小计标签元素
            xiaoji = $(obj).parent().parent().parent().parent().next().find('.xiaoji');
-           xiaoji.html((good_price*good_num).toFixed(2));
-           //改变当前商品件数
-           change_nums = $('#J_SelectedItemsCount').html();
-           $('#J_SelectedItemsCount').html(parseInt(change_nums)-1);
-           
-        }else{
-          //获取该对象的的上一个元素对象
-          //商品数量增加
-           good_num = parseInt($(obj).prev().val())+1;
-           //商品组合名
-           group_name = $(obj).prev().attr('name');
-           // console.log(good_num);
-           // console.log(group_name);
-            $('#sheng').html(parseInt($('#sheng').html())+2);
-            good_price = $(obj).parent().find('.tmp_price').val();
-           //获取小计标签元素
-           xiaoji = $(obj).parent().parent().parent().parent().next().find('.xiaoji');
-           xiaoji.html((good_price*good_num).toFixed(2));
-           //改变当前商品件数
-           change_nums = $('#J_SelectedItemsCount').html();
-           $('#J_SelectedItemsCount').html(parseInt(change_nums)+1);
-        }
-
-        $.ajaxSetup({
+           xiaoji.html((good_price*good_num).toFixed(2));   
+           $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -486,9 +362,63 @@
 
         //发送请求动态改变购物车的信息
         $.post('/home/shopcart/changecart',{good_num:good_num,group_name:group_name},function(res){
-           $('.hejia').html(res.total);
+           //$('.hejia').html(res.total);
            //console.log(res);
-        })   
+        });
+         //是否选中当前商品
+         if($(obj).parents('.fu_ul').find('.p_caozuo').prop("checked")){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.get('/home/shopcart/getgoodtotal',{},function(dan){
+                $('#J_SelectedItemsCount').html(dan[0]-1);
+                $('#J_Total').html(dan[1]);
+                console.log(dan)
+            })
+             //减少优惠价
+           $('#sheng').html(parseInt($('#sheng').html())-2);
+         }         
+        }else{
+          //获取该对象的的上一个元素对象
+          //商品数量增加
+           good_num = parseInt($(obj).prev().val())+1;
+           //商品组合名
+           group_name = $(obj).prev().attr('name');
+            
+            good_price = $(obj).parent().find('.tmp_price').val();
+           //获取小计标签元素
+           xiaoji = $(obj).parent().parent().parent().parent().next().find('.xiaoji');
+           xiaoji.html((good_price*good_num).toFixed(2));
+           $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            //发送请求动态改变购物车的信息
+            $.post('/home/shopcart/changecart',{good_num:good_num,group_name:group_name},function(res){
+               //$('.hejia').html(res.total);
+               //console.log(res);
+            });
+             //是否选中当前商品
+             if($(obj).parents('.fu_ul').find('.p_caozuo').prop("checked")){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.get('/home/shopcart/getgoodtotal',{},function(dan){
+                    $('#J_SelectedItemsCount').html(parseInt(dan[0])+1);
+                    $('#J_Total').html(dan[1]);
+                    console.log(dan)
+                })
+                 $('#sheng').html(parseInt($('#sheng').html())+2);
+             }                        
+        
+        }
+        
      }
 
      //直接修改
@@ -523,7 +453,217 @@
            $('#sheng').html((ress.num)*2);
         })   
 
+             //是否选中当前商品
+             if($(obj).parents('.fu_ul').find('.p_caozuo').prop("checked")){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.get('/home/shopcart/getgoodtotal',{},function(dan){
+                    $('#J_SelectedItemsCount').html(parseInt(dan[0])+1);
+                    $('#J_Total').html(dan[1]);
+                    console.log(dan)
+                })
+                 $('#sheng').html(parseInt($('#sheng').html())+2);
+             }
+
         });
      }
+
+
+     //重新修改商品信息
+     $('.edit_good').click(function(){
+        //获取当前的商品组名
+        edit_group = $(this).prev().val();
+        //发送请求
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.post('/home/shopcart/editgroup',{group:edit_group},function(result){
+          for(i = 0;i<result.length;i++){
+            if(result[i].group == edit_group){
+              $('.fenglei').append('<li class="sku-line selected addname" style=" cursor:pointer">'+result[i].group+'</li>');
+              //修改数量
+              $('.edit_num').val(result[i].number);
+              //修改库存
+              $('.edit_kucun').html(result[i].num);
+              //修改单价
+              $('.edit_price').html(result[i].price);
+              //修改商品图
+              $('.edit_pic').attr('src',result[i].pic);
+            }else{
+               $('.fenglei').append('<li class="sku-line addname" style=" cursor:pointer">'+result[i].group+'</li>');
+            }
+          }
+          
+        });
+
+     })
+
+     //初始化
+     $('.quxiao').click(function(){
+      $('.fenglei').empty();
+     });
+     //点击加选中颜色类名
+    $(".fenglei").on('mouseenter', function(){
+        $(".addname").click(function() {
+           $(this).addClass('selected').siblings().removeClass('selected');
+           //发送请求获取当前选中的商品的详情资料
+            click_group = $(this).html();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post('/home/shopcart/clickgroup',{group:click_group},function(group_info){
+              console.log(group_info)
+              //修改库存
+              $('.edit_kucun').html(group_info.num);
+              //修改单价
+              $('.edit_price').html(group_info.price);
+              //修改商品图
+              $('.edit_pic').attr('src',group_info.pic);
+              //初始化隐藏内容
+              $('.new_kowei').val(group_info.group);
+              $('.new_num').val($('.edit_num').val());
+              $('.new_pic').val(group_info.pic);
+              $('.new_qian').val(group_info.price);
+            })
+
+         });
+    });
+    //批量操作
+    $("#J_SelectAllCbx2").on("click", function(){
+      if($(this).is(":checked")){
+         //全选
+         
+         //将所有选中的商品打勾
+         $('.p_caozuo').each(function(){
+            $(this).attr("checked", 'checked');
+            //arr_del.push($(this).val());
+          });
+         //nsole.log(arr_del);  /home/shopcart/getgoodtotal
+         zt1 = 1;
+      }else {
+         //取消全选
+          $('.p_caozuo:checked').each(function(){
+            $(this).attr("checked",false);
+          });
+         zt1 = 0;
+      }
+
+      $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+ 
+      $.get('/home/shopcart/goodtotal',{zt1:zt1},function(js_hj1){
+          $('#J_SelectedItemsCount').html(js_hj1[0]);
+            $('#J_Total').html(js_hj1[1]);
+            $('#sheng').html($('#J_SelectedItemsCount').html()*2);
+         //console.log(js_hj1);
+      })
+
+  });
+
+    //批量删除
+    $('.deleteAll').click(function(){
+      //判断是否没有打勾
+      if($('.p_caozuo:checked').length == 0){
+        alert('请先选择要删除商品');
+        return;
+      }
+       arr_del = [];
+        //将所有选中的商品打勾
+       $('.p_caozuo:checked').each(function(){
+          //$(this).attr("checked", 'checked');
+          arr_del.push($(this).val());
+        });
+        //发送请求进行删除操作
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+       //console.log(arr_del);
+       $.post('/home/shopcart/deleteall',{arr_del,arr_del},function(all_bool){
+          if(all_bool){
+              $('.p_caozuo:checked').each(function(){
+             $(this).parents('.fu_ul').remove();
+            });
+              window.location.reload();
+          }else{
+            alert('网络波动...');
+          }
+       })
+    })
+
+    //单个删除
+    $('.delete').click(function(){
+      obj_del = $('.delete');
+     //判断当前删除是否打勾
+      del_checked =  $(this).parents('.fu_ul').find('.p_caozuo');
+      if(del_checked.prop("checked")){
+        //选中了
+        //发送请求进行删除操作
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        //获取要删除的商品id
+        del_id = del_checked.val();
+        $.get('/home/shopcart/delete',{id:del_id},function(del_bool){
+          obj_del.parents('.fu_ul').remove();
+          window.location.reload();
+        })
+      }else{
+        //没选中
+        alert('请选择指定的删除的商品');
+      }
+    });
+
+
+    //结算
+    $(function(){
+        $('.p_caozuo').change(function(){
+          //判断是否为选中
+          if($(this).prop("checked")){
+            zt = 1;
+          }else{
+            zt = 0;
+          }
+          current_good_id = $(this).val();
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+          });
+          $.get('/home/shopcart/selectgood',{zt:zt,id:current_good_id},function(js_hj){
+            $('#J_SelectedItemsCount').html(js_hj[0]);
+            $('#J_Total').html(js_hj[1]);
+            $('#sheng').html($('#J_SelectedItemsCount').html()*2);
+            //console.log(js_hj);
+          }) 
+             
+           
+        });
+    })
+
+
+    //判断有没有打勾的商品
+    $('#J_Go').click(function(){
+      if($('.p_caozuo:checked').length == 0){
+        alert('请先选择要购买的商品');
+        return false;
+      }
+      return true;
+    })
  </script>
+
 </html>

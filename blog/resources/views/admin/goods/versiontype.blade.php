@@ -1,4 +1,4 @@
-@extends('admin.layout.index');
+@extends('admin.layout.index')
 @section('content')
 
 <div class="demo" style="margin-top:40px;" > 

@@ -23,7 +23,12 @@
    <ul class="message-l"> 
     <div class="topMessage"> 
      <div class="menu-hd"> 
-      <a href="login.html" target="_top" class="h">亲，请登录</a> 
+        @if($username != ' ')
+        <font>账号:</font><a href="javascript:;" target="_top" class="h" style="color:blue">{{$username}}</a>
+        <a href="/home/outlogin" target="_top" class="h" style="color:red">注销</a> 
+       @else
+        <a href="/home/login/index" target="_top" class="h">亲，请登录</a> 
+       @endif
       <a href="register.html" target="_top">免费注册</a> 
      </div> 
     </div> 
@@ -57,13 +62,13 @@
     <img src="/uploads/images/logo.png" />
    </div> 
    <div class="logoBig"> 
-    <li><img src="/uploads/images/logobig.png" /></li> 
+    <li><img src="/uploads/images/logobigs.png" style="width:140px"/></li> 
    </div> 
    <div class="search-bar pr"> 
     <a name="index_none_header_sysc" href="#"></a> 
-    <form> 
-     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off" /> 
-     <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit" /> 
+    <form style="border-top-right-radius:30px;border-bottom-right-radius:30px;background:#FF5700"> 
+     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off" style="padding-left:20px;font-size:15px" /> 
+     <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit" style="border-top-right-radius:30px;border-bottom-right-radius:30px;outline:none;font-weight:bold" /> 
     </form> 
    </div> 
   </div> 
@@ -76,12 +81,10 @@
      <span class="all-goods">全部分类</span>
     </div> 
     <div class="nav-cont"> 
-     <ul> 
-      <li class="index"><a href="index.html">首页</a></li> 
-      <li class="qc"><a href="#">闪购</a></li> 
-      <li class="qc"><a href="#">限时抢</a></li> 
-      <li class="qc"><a href="#">团购</a></li> 
-      <li class="qc last"><a href="#">大包装</a></li> 
+      <ul> 
+      <li class="index"><a href="/home">首页</a></li> 
+      <li class="qc"><a href="#activity">活动</a></li> 
+      <li class="qc"><a href="#shopmain">店家推荐</a></li>
      </ul> 
      <div class="nav-extra"> 
       <i class="am-icon-user-secret am-icon-md nav-user"></i>
@@ -136,7 +139,7 @@
       <!-- 放大镜 -->
       @foreach($good_group as $good_group_k2 => $good_group_v2)
       @if($good_group_k2 == 0)
-       <a href="/uploads/images/01.jpg"><img src="{{$good_group_v2->pic}}" alt="细节展示放大镜特效" rel="/uploads/images/01.jpg" class="jqzoom" /></a>
+       <a href="{{$good_group_v2->pic}}"><img src="{{$good_group_v2->pic}}" alt="细节展示放大镜特效" rel="{{$good_group_v2->pic}}" class="jqzoom" /></a>
        @endif
        @endforeach
       </div> 
@@ -332,7 +335,7 @@
       </div> 
       <li> 
        <div class="clearfix tb-btn tb-btn-buy theme-login"> 
-        <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a> 
+        <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="javascript:;">立即购买</a> 
        </div> </li> 
       <li> 
        <div class="clearfix tb-btn tb-btn-basket theme-login"> 
@@ -1000,5 +1003,39 @@
           }
       });
   });
+
+  //立即购买
+  $('#LikBuy').click(function(){
+         //初始化空数组用户 
+      cart_arr2 = [];
+      //压入商品id
+      cart_arr2.push($('#good_id').val());
+      //压入购买数量
+      cart_arr2.push($('#text_box').val());
+      //压入单价
+      cart_arr2.push($('#good_price').html());
+      //压入商品组名
+      cart_arr2.push($('.selected').html());
+      cart_arr2.push($('#good_heji').html());
+      cart_arr2.push($('#good_name').html());
+      // console.log(cart_arr);
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+       // //发送请求
+      $.post('/home/shopcart/addcart',{data:cart_arr2},function(res){    
+          if(res == 0){
+            alert('网络波动,请稍后再试');
+          }else if(res == 1){
+             window.location.href = "/home/shopcart/index";
+          }else if(res == 2){
+            window.location.href = "/home/shopcart/index";
+          }
+      });
+
+  })
  </script>
 </html>

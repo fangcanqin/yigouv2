@@ -14,11 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //$mes = admin_users::where('name',session('userinfo'))->first();
         View::share('cates',IndexController::getCates(0));
-        //View::share('mess',IndexController::getMessages());
-        
-        
     }
 
     /**

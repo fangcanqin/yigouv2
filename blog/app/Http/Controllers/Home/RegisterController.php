@@ -110,6 +110,7 @@ class RegisterController extends Controller
         $users = new Users();
         //设置手机号
         $users->phone = $request->phone;
+        $users->status = 1;
         //判断邮箱是否存在
         if(Users::where('phone',$request->phone)->first()){
             echo '<script>alert("手机号已存在,请直接登录!");window.location.href="/home/login/index"</script>';exit;

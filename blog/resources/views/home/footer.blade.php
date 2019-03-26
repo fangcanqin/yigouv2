@@ -24,21 +24,21 @@
             </div>
             <aside class="menu">
                 <ul>
-                    <li class="person">
-                        <a href="index.html">个人中心</a>
+                    <li class="person active">
+                        <a href="/home/personal/index">个人中心</a>
                     </li>
                     <li class="person">
-                        <a href="#">个人资料</a>
+                        <a href="/home/information/index">个人资料</a>
                         <ul>
                             <li> <a href="information.html">个人信息</a></li>
                             <li> <a href="safety.html">安全设置</a></li>
-                            <li> <a href="address.html">收货地址</a></li>
+                            <li> <a href="/home/address/index">收货地址</a></li>
                         </ul>
                     </li>
                     <li class="person">
                         <a href="#">我的交易</a>
                         <ul>
-                            <li class="active"><a href="order.html">订单管理</a></li>
+                            <li ><a href="order.html">订单管理</a></li>
                             <li> <a href="change.html">退款售后</a></li>
                         </ul>
                     </li>
@@ -67,5 +67,9 @@
         </div>
 
     </body>
-
+    <script>
+        $('.menu li').click(funciton(){
+            $(this).addClass("active");
+        })
+    </script>
 </html>
